@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.InventoryControl.domain.Categoria;
+import com.InventoryControl.dto.CategoriaDTO;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.CategoriaRepository;
 
@@ -37,6 +38,14 @@ public class CategoriaService {
 	public Categoria insert(Categoria obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO dto) {
+		
+		Categoria categoria = new Categoria(null, dto.getNome());
+		
+		return categoria;
+		
 	}
 	
 	public Categoria update(Categoria obj) {
