@@ -2,6 +2,8 @@ package com.InventoryControl.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -13,6 +15,7 @@ public class ProdutoDTO implements Serializable {
 	@Length(min = 5, max = 150, message = "Deve conter entre 5 e 150 caracteres")
 	private String nome;
 	
+	@Pattern(regexp = "[\\s]*[0-9]*[1-9]+",message="Somente números")
 	private Integer quantidade;
 	
 	private Integer codCategoria;
