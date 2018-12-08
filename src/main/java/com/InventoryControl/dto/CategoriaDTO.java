@@ -5,27 +5,24 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.InventoryControl.domain.Produto;
+import com.InventoryControl.domain.Categoria;
 
-public class ProdutoDTO implements Serializable {
+public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer codigo;
+	
 	@NotEmpty(message="Preenchimento Obrigátorio")
 	@Length(min = 5, max = 150, message = "Deve conter entre 5 e 150 caracteres")
 	private String nome;
 	
-	@NotEmpty(message="Preenchimento Obrigátorio")
-	@Length(min = 1, message = "Minimo 1 para efetuar uma troca")
-	private Integer quantidade;
-	
-	public ProdutoDTO() {
+	public CategoriaDTO() {
+		
 	}
-
-	public ProdutoDTO(Produto obj) {
+	
+	public CategoriaDTO(Categoria obj) {
 		codigo = obj.getCodigo();
-		nome = obj.getNome();
-		quantidade = obj.getQuantidade();
+		nome=obj.getNome();		
 	}
 
 	public Integer getCodigo() {
@@ -43,15 +40,4 @@ public class ProdutoDTO implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	
-	
 }
