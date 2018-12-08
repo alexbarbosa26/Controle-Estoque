@@ -90,8 +90,7 @@ public class InventoryControlApplication implements CommandLineRunner {
 		prod12.getCategorias().addAll(Arrays.asList(cat6));
 
 		repoCategoria.save(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
-		repoProduto.save(
-				Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
+		repoProduto.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
 
 		// *************************************************
 
