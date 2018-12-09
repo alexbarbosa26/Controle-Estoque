@@ -29,6 +29,8 @@ public class UsuarioDTO implements Serializable {
 	private String email;
 	private String senha;
 	
+	private Integer codSite;
+	
 	public UsuarioDTO() {
 		
 	}
@@ -72,8 +74,13 @@ public class UsuarioDTO implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	
+
+	public Integer getCodSite() {
+		return codSite;
+	}
+
+	public void setCodSite(Integer codSite) {
+		this.codSite = codSite;
+	}
 
 }

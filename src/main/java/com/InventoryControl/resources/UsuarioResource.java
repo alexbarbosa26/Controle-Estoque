@@ -36,6 +36,8 @@ public class UsuarioResource {
 
 		Usuario obj = service.fromDTO(objtDTO);
 		
+		obj = service.insert(obj);
+		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getCodigo())
 				.toUri();
 
