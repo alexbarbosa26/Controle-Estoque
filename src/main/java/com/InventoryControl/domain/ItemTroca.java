@@ -1,6 +1,8 @@
 package com.InventoryControl.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,43 +12,48 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class ItemTroca implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@JsonIgnore
 	@EmbeddedId
 	private ItemTrocaPK codigo = new ItemTrocaPK();
-	
+
 	private Integer quantidadeTroca;
-	
+
 	public ItemTroca() {
-		
+
 	}
 
-	public ItemTroca(Trocas troca,Produto produto, Integer quantidadeTroca) {
+	public ItemTroca(Trocas troca, Produto produto, Integer quantidadeTroca) {
 		super();
 		codigo.setTroca(troca);
-		codigo.setProduto(produto);		
+		codigo.setProduto(produto);
 		this.quantidadeTroca = quantidadeTroca;
 	}
-	
-	public Integer getSobra() {
-		if(quantidadeTroca != 0 && codigo.getProduto().getQuantidade() != 0) {
-			if(codigo.getProduto().getQuantidade() < quantidadeTroca) {
-				return 0;
-			}
-		return (codigo.getProduto().getQuantidade()-quantidadeTroca);
-		}
-		return getSobra();
-	}
-		
+	/*
+	 * public Integer getSobra() { if(quantidadeTroca != 0 &&
+	 * codigo.getProduto().getQuantidade() != 0) {
+	 * if(codigo.getProduto().getQuantidade() < quantidadeTroca) { return 0; }
+	 * return (codigo.getProduto().getQuantidade()-quantidadeTroca); } return
+	 * getSobra(); }
+	 */
+
 	@JsonIgnore
 	public Trocas getTroca() {
 		return codigo.getTroca();
 	}
-	
+
+	public void setTroca(Trocas troca) {
+		codigo.setTroca(troca);
+	}
+
 	public Produto getProduto() {
 		return codigo.getProduto();
 	}
-	
+
+	public void setProduto(Produto produto) {
+		codigo.setProduto(produto);
+
+	}
 
 	public ItemTrocaPK getCodigo() {
 		return codigo;
@@ -87,5 +94,16 @@ public class ItemTroca implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduto().getNome());
+		builder.append(", Qte: ");
+		builder.append(getQuantidadeTroca());
+		builder.append("\n");
+		return builder.toString();
 	}
 }

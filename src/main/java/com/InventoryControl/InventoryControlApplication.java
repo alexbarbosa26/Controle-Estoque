@@ -142,10 +142,10 @@ public class InventoryControlApplication implements CommandLineRunner {
 
 		// **********************************************************************
 
-		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
-		Trocas t1 = new Trocas(null, date.parse("28/11/2018 19:35"), u1);
-		Trocas t2 = new Trocas(null, date.parse("28/11/2018 19:40"), u1);
+		Trocas t1 = new Trocas(null, date.parse("28/11/2018"), u1);
+		Trocas t2 = new Trocas(null, date.parse("28/11/2018"), u1);
 
 		u1.getTrocas().addAll(Arrays.asList(t1, t2));
 
