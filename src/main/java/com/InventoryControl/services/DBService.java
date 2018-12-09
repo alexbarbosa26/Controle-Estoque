@@ -14,6 +14,7 @@ import com.InventoryControl.domain.Produto;
 import com.InventoryControl.domain.Sites;
 import com.InventoryControl.domain.Trocas;
 import com.InventoryControl.domain.Usuario;
+import com.InventoryControl.enums.Perfil;
 import com.InventoryControl.repositories.CategoriaRepository;
 import com.InventoryControl.repositories.ItemTrocaRepository;
 import com.InventoryControl.repositories.ProdutoRepository;
@@ -93,6 +94,8 @@ public class DBService {
 
 		// *************************************************
 
+		Usuario u0 = new Usuario(null, "000000", "sysadmin", "sysadmin@neobpo.com.br", psw.encode("sysadmin"));
+		u0.addPerfil(Perfil.ADMIN);
 		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"));
 		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br", psw.encode("123456"));
 		Usuario u3 = new Usuario(null, "222230", "Diego Pimentel Belo Lopes", "diego.belo@neobpo.com.br", psw.encode("123456"));
@@ -102,6 +105,7 @@ public class DBService {
 		Usuario u6 = new Usuario(null, "294860", "Roberto Coelho", "roberto.coelho@neobpo.com.br", psw.encode("123456"));
 		Usuario u7 = new Usuario(null, "238564", "Gabriel Silva Goto", "gabriel.goto@neobpo.com.br", psw.encode("123456"));
 		Usuario u8 = new Usuario(null, "310075", "Marcelo Vicente Rosim", "marcelo.rosim@neobpo.com.br", psw.encode("123456"));
+		
 
 		Sites s1 = new Sites(null, "JBT");
 		Sites s2 = new Sites(null, "SJO");
@@ -115,6 +119,7 @@ public class DBService {
 		Sites s9 = new Sites(null, "SJC");
 		Sites s11 = new Sites(null, "BRF");
 
+		u0.getSite().addAll(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 		u1.getSite().addAll(Arrays.asList(s1));
 		u2.getSite().addAll(Arrays.asList(s2, s10));
 		u3.getSite().addAll(Arrays.asList(s3, s4));
@@ -124,19 +129,19 @@ public class DBService {
 		u7.getSite().addAll(Arrays.asList(s11, s9));
 		u8.getSite().addAll(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 
-		s1.getUsuarios().addAll(Arrays.asList(u1, u8));
-		s2.getUsuarios().addAll(Arrays.asList(u2, u8));
-		s10.getUsuarios().addAll(Arrays.asList(u2, u8));
-		s3.getUsuarios().addAll(Arrays.asList(u3, u8));
-		s4.getUsuarios().addAll(Arrays.asList(u3, u8));
-		s5.getUsuarios().addAll(Arrays.asList(u4, u8));
-		s6.getUsuarios().addAll(Arrays.asList(u5, u8));
-		s7.getUsuarios().addAll(Arrays.asList(u5, u8));
-		s8.getUsuarios().addAll(Arrays.asList(u6, u8));
-		s9.getUsuarios().addAll(Arrays.asList(u7, u8));
-		s11.getUsuarios().addAll(Arrays.asList(u7, u8));
+		s1.getUsuarios().addAll(Arrays.asList(u1, u8,u0));
+		s2.getUsuarios().addAll(Arrays.asList(u2, u8,u0));
+		s10.getUsuarios().addAll(Arrays.asList(u2, u8,u0));
+		s3.getUsuarios().addAll(Arrays.asList(u3, u8,u0));
+		s4.getUsuarios().addAll(Arrays.asList(u3, u8,u0));
+		s5.getUsuarios().addAll(Arrays.asList(u4, u8,u0));
+		s6.getUsuarios().addAll(Arrays.asList(u5, u8,u0));
+		s7.getUsuarios().addAll(Arrays.asList(u5, u8,u0));
+		s8.getUsuarios().addAll(Arrays.asList(u6, u8,u0));
+		s9.getUsuarios().addAll(Arrays.asList(u7, u8,u0));
+		s11.getUsuarios().addAll(Arrays.asList(u7, u8,u0));
 
-		repoUsuario.save(Arrays.asList(u1, u2, u3, u4, u5, u6, u7, u8));
+		repoUsuario.save(Arrays.asList(u0,u1, u2, u3, u4, u5, u6, u7, u8));
 		repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 
 		// **********************************************************************

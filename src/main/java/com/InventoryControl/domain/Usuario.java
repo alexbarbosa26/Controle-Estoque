@@ -2,15 +2,22 @@ package com.InventoryControl.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.InventoryControl.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,7 +39,13 @@ public class Usuario implements Serializable{
 	@OneToMany(mappedBy="usuario")
 	private List<Trocas> trocas=new ArrayList<>();
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	public Usuario() {
+		
+		addPerfil(Perfil.MODERADOR);
 		
 	}
 
@@ -43,6 +56,7 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		addPerfil(Perfil.MODERADOR);
 	}
 
 	public Integer getCodigo() {
@@ -100,6 +114,15 @@ public class Usuario implements Serializable{
 	public void setTrocas(List<Trocas> trocas) {
 		this.trocas = trocas;
 	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		
+		perfis.add(perfil.getCod());
+}
 
 	@Override
 	public int hashCode() {
