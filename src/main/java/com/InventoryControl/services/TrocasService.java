@@ -14,6 +14,8 @@ import com.InventoryControl.repositories.ItemTrocaRepository;
 import com.InventoryControl.repositories.ProdutoRepository;
 import com.InventoryControl.repositories.TrocasRepository;
 import com.InventoryControl.repositories.UsuarioRepository;
+import com.InventoryControl.resources.exception.ObjectNotFoundException;
+
 
 @Service
 public class TrocasService {
@@ -31,7 +33,7 @@ public class TrocasService {
 	public ItemTrocaRepository repoItem;
 	
 	
-	public Trocas insert(Trocas obj) {
+	public Trocas insert(Trocas obj){
 		
 		obj.setCodigo(null);
 		obj.setDataTroca(new Date());
@@ -56,7 +58,7 @@ public class TrocasService {
 				
 			}else {
 				
-				System.out.print("Estoque Vazio !");
+				throw new ObjectNotFoundException("Estoque Vazio");
 				
 			}
 			
