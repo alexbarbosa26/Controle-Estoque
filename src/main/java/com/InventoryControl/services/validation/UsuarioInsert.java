@@ -8,11 +8,11 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = UsuarioUpdateValidator.class)
+@Constraint(validatedBy = UsuarioInsertValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 
-public @interface UsuarioUpdate {
+public @interface UsuarioInsert {
 
 	String message() default "Erro de validação";
 
