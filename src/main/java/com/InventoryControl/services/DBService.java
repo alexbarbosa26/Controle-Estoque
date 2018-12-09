@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.InventoryControl.domain.Categoria;
@@ -23,6 +24,9 @@ import com.InventoryControl.repositories.UsuarioRepository;
 @Service
 public class DBService {	
 
+	@Autowired
+	private BCryptPasswordEncoder psw;
+	
 	@Autowired
 	private CategoriaRepository repoCategoria;
 
@@ -89,15 +93,15 @@ public class DBService {
 
 		// *************************************************
 
-		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", "123456");
-		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br", "123456");
-		Usuario u3 = new Usuario(null, "222230", "Diego Pimentel Belo Lopes", "diego.belo@neobpo.com.br", "123456");
-		Usuario u4 = new Usuario(null, "231880", "Lucas Natario Da Silva", "lucas.natario@neobpo.com.br", "123456");
+		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"));
+		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br", psw.encode("123456"));
+		Usuario u3 = new Usuario(null, "222230", "Diego Pimentel Belo Lopes", "diego.belo@neobpo.com.br", psw.encode("123456"));
+		Usuario u4 = new Usuario(null, "231880", "Lucas Natario Da Silva", "lucas.natario@neobpo.com.br", psw.encode("123456"));
 		Usuario u5 = new Usuario(null, "225493", "Renan Dos Santos Tampellini", "renan.rtampellini@neobpo.com.br",
-				"123456");
-		Usuario u6 = new Usuario(null, "294860", "Roberto Coelho", "roberto.coelho@neobpo.com.br", "123456");
-		Usuario u7 = new Usuario(null, "238564", "Gabriel Silva Goto", "gabriel.goto@neobpo.com.br", "123456");
-		Usuario u8 = new Usuario(null, "310075", "Marcelo Vicente Rosim", "marcelo.rosim@neobpo.com.br", "123456");
+				psw.encode("123456"));
+		Usuario u6 = new Usuario(null, "294860", "Roberto Coelho", "roberto.coelho@neobpo.com.br", psw.encode("123456"));
+		Usuario u7 = new Usuario(null, "238564", "Gabriel Silva Goto", "gabriel.goto@neobpo.com.br", psw.encode("123456"));
+		Usuario u8 = new Usuario(null, "310075", "Marcelo Vicente Rosim", "marcelo.rosim@neobpo.com.br", psw.encode("123456"));
 
 		Sites s1 = new Sites(null, "JBT");
 		Sites s2 = new Sites(null, "SJO");

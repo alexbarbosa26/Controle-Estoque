@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.InventoryControl.domain.Sites;
@@ -18,6 +19,9 @@ import com.InventoryControl.repositories.UsuarioRepository;
 @Service
 public class UsuarioService {
 
+	@Autowired
+	private BCryptPasswordEncoder psw;
+	
 	@Autowired
 	private UsuarioRepository repo;
 	
@@ -33,7 +37,7 @@ public class UsuarioService {
 	
 	public Usuario fromDTO(UsuarioDTO dto) {
 		
-		Usuario usuario = new Usuario(null, dto.getMatricula(), dto.getNome(), dto.getEmail(), dto.getSenha());
+		Usuario usuario = new Usuario(null, dto.getMatricula(), dto.getNome(), dto.getEmail(), psw.encode(dto.getSenha()));
 		Sites site = repoSite.findOne(dto.getCodSite());
 		
 		usuario.getSite().addAll(Arrays.asList(site));
