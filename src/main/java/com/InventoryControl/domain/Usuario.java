@@ -30,6 +30,7 @@ public class Usuario implements Serializable{
 	private String matricula;
 	private String nome;
 	private String email;
+	@JsonIgnore
 	private String senha;
 	
 	@ManyToMany(mappedBy="usuarios")
