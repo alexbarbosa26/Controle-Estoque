@@ -12,9 +12,12 @@ import org.springframework.stereotype.Service;
 import com.InventoryControl.domain.Sites;
 import com.InventoryControl.domain.Usuario;
 import com.InventoryControl.dto.UsuarioDTO;
+import com.InventoryControl.enums.Perfil;
+import com.InventoryControl.exceptions.AuthorizationException;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.SiteRepository;
 import com.InventoryControl.repositories.UsuarioRepository;
+import com.InventoryControl.security.UserSS;
 
 @Service
 public class UsuarioService {
@@ -48,6 +51,13 @@ public class UsuarioService {
 	}
 
 	public Usuario buscarId(Integer cod) {
+		
+		UserSS user = UserService.authenticated();
+		
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !cod.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
+			
+		}
 
 		Usuario obj = repo.findOne(cod);
 
