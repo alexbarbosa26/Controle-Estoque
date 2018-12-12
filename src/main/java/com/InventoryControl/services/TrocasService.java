@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.InventoryControl.domain.ItemTroca;
 import com.InventoryControl.domain.Produto;
@@ -39,6 +40,7 @@ public class TrocasService {
 	public ItemTrocaRepository repoItem;
 	
 	
+	@Transactional
 	public Trocas insert(Trocas obj){
 		
 		obj.setCodigo(null);
@@ -71,7 +73,8 @@ public class TrocasService {
 		}
 		
 		repoItem.save(obj.getItens());
-				
+		
+		System.out.println(obj);
 		
 		return obj;
 		

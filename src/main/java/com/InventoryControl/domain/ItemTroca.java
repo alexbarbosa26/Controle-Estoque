@@ -94,4 +94,16 @@ public class ItemTroca implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduto().getNome());
+		builder.append(", Qtd: ");
+		builder.append(quantidadeTroca);
+		builder.append("\n");
+		return builder.toString();
+	}
+	
+	
+
 }

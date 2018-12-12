@@ -1,6 +1,7 @@
 package com.InventoryControl.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -110,6 +111,30 @@ public class Trocas implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("codigo troca: ");
+		builder.append(codigo);
+		builder.append(", Data Troca: ");
+		builder.append(date.format(getDataTroca()));
+		builder.append(", Matricula: ");
+		builder.append(getUsuario().getMatricula());
+		builder.append(", Usuario: ");
+		builder.append(getUsuario().getNome());
+		builder.append("\nItens da Troca: \n");
+		
+		for(ItemTroca it : getItens()) {
+			builder.append(it.toString());
+		}
+				
+		return builder.toString();
+	}
+	
+	
 
 	
 }

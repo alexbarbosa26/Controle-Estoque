@@ -97,6 +97,7 @@ public class DBService {
 		Usuario u0 = new Usuario(null, "000000", "sysadmin", "sysadmin@neobpo.com.br", psw.encode("sysadmin"));
 		u0.addPerfil(Perfil.ADMIN);
 		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"));
+		u1.addPerfil(Perfil.ADMIN);
 		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br", psw.encode("123456"));
 		Usuario u3 = new Usuario(null, "222230", "Diego Pimentel Belo Lopes", "diego.belo@neobpo.com.br", psw.encode("123456"));
 		Usuario u4 = new Usuario(null, "231880", "Lucas Natario Da Silva", "lucas.natario@neobpo.com.br", psw.encode("123456"));
