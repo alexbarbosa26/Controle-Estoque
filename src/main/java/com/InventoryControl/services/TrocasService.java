@@ -28,16 +28,19 @@ import com.InventoryControl.security.UserSS;
 public class TrocasService {
 	
 	@Autowired
-	public TrocasRepository repo;
+	private TrocasRepository repo;
 	
 	@Autowired
-	public UsuarioRepository repoUsuario;
+	private UsuarioRepository repoUsuario;
 	
 	@Autowired
-	public ProdutoRepository repoProduto;
+	private ProdutoRepository repoProduto;
 	
 	@Autowired
-	public ItemTrocaRepository repoItem;
+	private ItemTrocaRepository repoItem;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	
 	@Transactional
@@ -74,7 +77,7 @@ public class TrocasService {
 		
 		repoItem.save(obj.getItens());
 		
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		
 		return obj;
 		
