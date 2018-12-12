@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import com.InventoryControl.services.DBService;
 import com.InventoryControl.services.EmailService;
 import com.InventoryControl.services.MockEmailService;
+import com.InventoryControl.services.SmtpEmailService;
 
 @Configuration
 @Profile("test")
@@ -25,10 +26,15 @@ public class TestConfig {
 		
 		return true;
 	}
-	
+	/*
 	@Bean
 	public EmailService emailService() {
 		return new MockEmailService();
+	}*/
+	
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
 
 }
