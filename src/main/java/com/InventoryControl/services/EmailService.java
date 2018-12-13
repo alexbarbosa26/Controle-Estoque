@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.SimpleMailMessage;
 
 import com.InventoryControl.domain.Trocas;
+import com.InventoryControl.domain.Usuario;
 
 public interface EmailService {
 	
@@ -13,6 +14,7 @@ public interface EmailService {
 	
 	void sendOrderConfirmationHtmlEmail(Trocas obj);
 	void sendHtmlEmail(MimeMessage msg);
+	void sendNewPasswordEmail(Usuario usuario, String newPsw);
 	
 	
 

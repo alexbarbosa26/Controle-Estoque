@@ -14,6 +14,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.InventoryControl.domain.Trocas;
+import com.InventoryControl.domain.Usuario;
 
 public abstract class AbstractEmailService implements EmailService {
 
@@ -65,6 +66,7 @@ public abstract class AbstractEmailService implements EmailService {
 			sendOrderConfirmationEmail(obj);
 		}
 	}
+	
 
 	protected MimeMessage prepareMimeMessageFromTrocas(Trocas obj) throws MessagingException {
 
@@ -73,10 +75,30 @@ public abstract class AbstractEmailService implements EmailService {
 
 		mmh.setTo(obj.getUsuario().getEmail());
 		mmh.setFrom(sender);
-		mmh.setSubject("Baixa de estoque de codigo: " + obj.getCodigo());
+		mmh.setSubject("Baixa de estoque de código: " + obj.getCodigo());
 		mmh.setSentDate(new Date(System.currentTimeMillis()));
 		mmh.setText(htmlFromTemplatePedido(obj), true);
 
 		return mimeMessage;
 	}
+	
+	@Override
+	public void sendNewPasswordEmail(Usuario usuario, String newPsw) {
+		SimpleMailMessage sm = prepareNewPasswordEmail(usuario, newPsw);
+		sendEmail(sm);		
+	}
+
+	protected SimpleMailMessage prepareNewPasswordEmail(Usuario usuario, String newPsw) {
+		SimpleMailMessage sm = new SimpleMailMessage();
+
+		sm.setTo(usuario.getEmail());
+		sm.setFrom(sender);
+		sm.setSubject("Solicitação de nova senha");
+		sm.setSentDate(new Date(System.currentTimeMillis()));
+		sm.setText("Nova Senha: " + newPsw);
+
+		return sm;
+	}
+	
+	
 }
