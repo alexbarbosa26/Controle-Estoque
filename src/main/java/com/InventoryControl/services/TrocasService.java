@@ -77,7 +77,7 @@ public class TrocasService {
 		
 		repoItem.save(obj.getItens());
 		
-		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		
 		return obj;
 		

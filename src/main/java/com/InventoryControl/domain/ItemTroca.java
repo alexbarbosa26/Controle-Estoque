@@ -99,6 +99,8 @@ public class ItemTroca implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getProduto().getNome());
 		builder.append(", Qtd: ");
+		builder.append(getProduto().getQuantidade());
+		builder.append(", Qtd Estoque: ");
 		builder.append(quantidadeTroca);
 		builder.append("\n");
 		return builder.toString();
