@@ -8,9 +8,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -31,6 +33,24 @@ public class UsuarioResource {
 		List<Usuario> objList=service.findAll();
 		
 		return ResponseEntity.ok().body(objList);
+	
+	}
+	
+
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	public ResponseEntity<Usuario> findId(@PathVariable Integer id){
+		Usuario obj = service.buscarId(id);
+		
+		return ResponseEntity.ok().body(obj);
+		
+	}
+	
+	@RequestMapping(value="/email",method=RequestMethod.GET)
+	public ResponseEntity<Usuario> findEmail(@RequestParam(value="value") String email){
+		Usuario obj = service.findByEmail(email);
+		
+		return ResponseEntity.ok().body(obj);
+		
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
@@ -47,5 +67,7 @@ public class UsuarioResource {
 		return ResponseEntity.created(uri).build();
 		
 	}
+	
+	
 
 }

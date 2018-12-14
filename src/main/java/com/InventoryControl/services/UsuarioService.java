@@ -30,12 +30,31 @@ public class UsuarioService {
 	
 	@Autowired
 	private SiteRepository repoSite;
+	
 
 	public Usuario insert(Usuario obj) {
 
 		obj.setCodigo(null);
 		return repo.save(obj);
 
+	}
+	
+	public Usuario findByEmail(String email) {
+		
+		UserSS user = UserService.authenticated();
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso Negado");
+			
+		}
+		
+		Usuario obj = repo.findByEmail(email);
+		
+		if(obj == null) {
+			throw new ObjectNotFoundException("Email: " + user.getUsername(), "não encontrado, favor verificar o codigo digitado!");
+		}
+		
+		return obj;
+		
 	}
 	
 	public Usuario fromDTO(UsuarioDTO dto) {
