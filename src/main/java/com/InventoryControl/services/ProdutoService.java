@@ -24,13 +24,14 @@ public class ProdutoService {
 	@Autowired
 	private CategoriaRepository repoCategoria;
 
+	//metodo que insere um novo produto via DTO
 	public Produto insert(Produto obj) {		
 
 		repoCategoria.save(obj.getCategorias());
 		
 		return repo.save(obj);
 	}
-	
+	//metodo DTO que valida as informações lançadas pelo usuario
 	public Produto fromDTO(ProdutoDTO dto) {
 		
 		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade());
@@ -45,6 +46,7 @@ public class ProdutoService {
 		
 	}
 
+	//metodo que faz a busca via codigo do produto
 	public Produto buscarId(Integer cod) {
 
 		Produto obj = repo.findOne(cod);
@@ -54,15 +56,18 @@ public class ProdutoService {
 		return obj;
 	}
 
+	//metodo que lista todos os produtos
 	public List<Produto> findAll() {
 		return repo.findAll();
 	}
 
+	//metodo que atualiza as informações dos produtos
 	public Produto update(Produto obj) {
 		buscarId(obj.getCodigo());
 		return repo.save(obj);
 	}
 
+	//metodo que deteleta os produtos
 	public void delete(Integer cod) {
 		buscarId(cod);
 		try {

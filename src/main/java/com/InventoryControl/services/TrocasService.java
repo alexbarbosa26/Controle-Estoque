@@ -42,7 +42,7 @@ public class TrocasService {
 	@Autowired
 	private EmailService emailService;
 	
-	
+	//metodo para registrar uma baixa no estoque
 	@Transactional
 	public Trocas insert(Trocas obj){
 		
@@ -52,6 +52,7 @@ public class TrocasService {
 		
 		obj = repo.save(obj);
 		
+		//adiciona a quantidade e todo os itens que foram selecionados para dar baixa no estoque
 		for(ItemTroca it : obj.getItens()) {
 			
 			it.setProduto(repoProduto.findOne(it.getProduto().getCodigo()));
@@ -77,16 +78,21 @@ public class TrocasService {
 		
 		repoItem.save(obj.getItens());
 		
+		//metodo para enviar por email as informações 
 		emailService.sendOrderConfirmationHtmlEmail(obj);
 		
 		return obj;
 		
 	}
 	
+	
+	//metodo para buscar e litar todas as trocas
 	public List<Trocas> findAll(){
 		return repo.findAll();
 	}
 	
+	
+	//metodos que lista todos as trocas de forma pagina na qual o usuario deva estar logado para lista-las
 	public Page<Trocas> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		UserSS user = UserService.authenticated();
 		
@@ -101,5 +107,6 @@ public class TrocasService {
 		return repo.findByUsuario(ususario, pageRequest);
 		
 	}
+	
 
 }

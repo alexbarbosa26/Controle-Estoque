@@ -17,10 +17,12 @@ public class SiteService {
 	@Autowired
 	private SiteRepository repo;
 	
+	//metodo que lista todos os sites
 	public List<Sites> findAll(){
 		return repo.findAll();
 	}
 	
+	//Metodo que busca pelo codigo do site
 	public Sites buscarId(Integer cod) {
 		Sites obj = repo.findOne(cod);
 		
@@ -29,17 +31,17 @@ public class SiteService {
 		}
 		return obj;
 	}
-	
+	//Metodo que insere um novo site
 	public Sites insert(Sites obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
-	
+	//metodo que atualiza o nome do site
 	public Sites update(Sites obj) {
 		buscarId(obj.getCodigo());
 		return repo.save(obj);
 	}
-	
+	//metodo que deleta do site
 	public void delete(Integer cod) {
 		buscarId(cod);
 		try {

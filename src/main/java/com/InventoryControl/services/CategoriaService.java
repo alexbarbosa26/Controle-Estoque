@@ -18,6 +18,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
+	//metodo para buscar categoria e seus produtos pelo codigo da categoria
 	public Categoria buscarId(Integer cod) {
 		Categoria obj = repo.findOne(cod);
 		
@@ -27,19 +28,20 @@ public class CategoriaService {
 		return obj;
 	}
 	
-	//Buscando todos os registros 
+	//metodo que buscando e lista todos os registros 
 	public List<Categoria> findAll(){
 		
 		return repo.findAll();
 		
 	}
 	
-	//Inserindo registro
+	//Metodo para inserir um nova categoria via DTO
 	public Categoria insert(Categoria obj) {
 		obj.setCodigo(null);
 		return repo.save(obj);
 	}
 	
+	//Metodo DTO para validar as informações lançadas pelo usuario
 	public Categoria fromDTO(CategoriaDTO dto) {
 		
 		Categoria categoria = new Categoria(null, dto.getNome());
@@ -47,13 +49,14 @@ public class CategoriaService {
 		return categoria;
 		
 	}
-	
+	//metodo para atualizar as informações da categoria
 	public Categoria update(Categoria obj) {
 		
 		buscarId(obj.getCodigo());
 		return repo.save(obj);
 	}
 	
+	//metodo para deletar uma categoria pela ID
 	public void delete(Integer cod) {
 		buscarId(cod);
 		try {

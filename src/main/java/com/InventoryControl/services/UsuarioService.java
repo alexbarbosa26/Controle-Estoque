@@ -32,6 +32,7 @@ public class UsuarioService {
 	private SiteRepository repoSite;
 	
 
+	//metodo que insere um novo usuario validado por um DTO
 	public Usuario insert(Usuario obj) {
 
 		obj.setCodigo(null);
@@ -39,6 +40,7 @@ public class UsuarioService {
 
 	}
 	
+	//metodo que faz a busca pelo email do usuario caso o usuario esteja logado e tenha a devida permissao
 	public Usuario findByEmail(String email) {
 		
 		UserSS user = UserService.authenticated();
@@ -57,6 +59,7 @@ public class UsuarioService {
 		
 	}
 	
+	//metodo DTO que valida os dados lançados pelo usuario
 	public Usuario fromDTO(UsuarioDTO dto) {
 		
 		Usuario usuario = new Usuario(null, dto.getMatricula(), dto.getNome(), dto.getEmail(), psw.encode(dto.getSenha()));
@@ -69,6 +72,7 @@ public class UsuarioService {
 		
 	}
 
+	//metodo que efetua a busca pelo codigo do usuario caso o usuario esteja logado e tenha a devida permissao
 	public Usuario buscarId(Integer cod) {
 		
 		UserSS user = UserService.authenticated();
@@ -85,7 +89,8 @@ public class UsuarioService {
 		}
 		return obj;
 	}
-
+	
+	//metodo que lista todos os usuarios
 	public List<Usuario> findAll() {
 
 		return repo.findAll();

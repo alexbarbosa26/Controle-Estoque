@@ -63,7 +63,5 @@ public class ProdutoDTO implements Serializable {
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
 	}
-
-	
 	
 }
