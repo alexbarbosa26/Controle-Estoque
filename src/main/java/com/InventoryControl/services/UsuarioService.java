@@ -96,6 +96,7 @@ public class UsuarioService {
 		return repo.findAll();
 	}
 
+	//metodo para deletar um usuario pelo codigo
 	public void delete(Integer cod) {
 		buscarId(cod);
 		try {
@@ -104,6 +105,25 @@ public class UsuarioService {
 
 			throw new DataIntegrityException("Não é possivel excluir o usúario");
 		}
+	}
+	
+	//metodo para listar os usuario baseado no codigo do site
+	public List<Usuario> findUsuarioSite(Integer codigo){
+		
+		UserSS user = UserService.authenticated();
+		
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !codigo.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
+			
+		}
+		
+		List<Usuario> objList = repo.findUsuariosSites(codigo);		
+		
+		if(objList == null) {
+			throw new ObjectNotFoundException("Não existe site de codigo: " +codigo,"");
+		}
+		return objList;
+		
 	}
 
 }

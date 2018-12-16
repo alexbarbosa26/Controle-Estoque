@@ -17,9 +17,9 @@ public class SiteService {
 	@Autowired
 	private SiteRepository repo;
 	
-	//metodo que lista todos os sites
+	//metodo que lista todos os sites ordenados pelo nome
 	public List<Sites> findAll(){
-		return repo.findAll();
+		return repo.findAllByOrderByNome();
 	}
 	
 	//Metodo que busca pelo codigo do site

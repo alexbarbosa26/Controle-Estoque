@@ -1,6 +1,8 @@
 package com.InventoryControl.repositories;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,5 +13,5 @@ import com.InventoryControl.domain.Sites;
 public interface SiteRepository extends JpaRepository<Sites, Integer>{
 
 	@Transactional(readOnly=true)
-	Sites findAllByOrderByNome(String nome);
+	public List<Sites> findAllByOrderByNome();
 }
