@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.InventoryControl.domain.Usuario;
 import com.InventoryControl.services.validation.UsuarioInsert;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @UsuarioInsert
@@ -30,9 +29,9 @@ public class UsuarioDTO implements Serializable {
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Email(message="Email inválido")
 	private String email;
-	@JsonIgnore
+	
 	private String senha;
-	@JsonIgnore
+	
 	private Integer codSite;
 	
 	public UsuarioDTO() {
