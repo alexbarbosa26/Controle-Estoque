@@ -36,7 +36,7 @@ public class ProdutoService {
 		
 		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade());
 		
-		Categoria categoria = new Categoria(dto.getCodCategoria(), dto.getNomeCategoria());
+		Categoria categoria = repoCategoria.findOne(dto.getCodCategoria());
 		
 		categoria.getProdutos().addAll(Arrays.asList(produtos));		
 		produtos.getCategorias().addAll(Arrays.asList(categoria));
