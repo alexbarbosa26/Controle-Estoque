@@ -5,6 +5,8 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.InventoryControl.domain.Produto;
+
 public class ProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -17,11 +19,18 @@ public class ProdutoDTO implements Serializable {
 	private Integer quantidade;
 	
 	private Integer codCategoria;
-	private String nomeCategoria;
+	
+	private Integer codSite;
 	
 	public ProdutoDTO() {
 	}
-
+	
+	public ProdutoDTO(Produto obj) {
+		codigo = obj.getCodigo();
+		nome = obj.getNome();
+		quantidade = obj.getQuantidade();
+	}
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -54,12 +63,14 @@ public class ProdutoDTO implements Serializable {
 		this.codCategoria = codCategoria;
 	}
 
-	public String getNomeCategoria() {
-		return nomeCategoria;
+	public Integer getCodSite() {
+		return codSite;
 	}
 
-	public void setNomeCategoria(String nomeCategoria) {
-		this.nomeCategoria = nomeCategoria;
+	public void setCodSite(Integer codSite) {
+		this.codSite = codSite;
 	}
+	
+	
 	
 }

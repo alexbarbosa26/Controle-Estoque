@@ -2,12 +2,14 @@ package com.InventoryControl.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,5 +45,15 @@ public class ProdutoResource {
 				.toUri();
 
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{codSite}/{codCategoria}/sites/categorias",method=RequestMethod.GET)
+	public ResponseEntity<List<ProdutoDTO>> findProdutos(@PathVariable Integer codSite, @PathVariable Integer codCategoria){
+		
+		List<Produto> list = service.findBySite(codSite,codCategoria);
+		List<ProdutoDTO> listDto = list.stream().map(obj -> new ProdutoDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDto);
+		
 	}
 }

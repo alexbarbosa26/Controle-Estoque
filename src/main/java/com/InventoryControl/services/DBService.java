@@ -55,19 +55,31 @@ public class DBService {
 		Categoria cat4 = new Categoria(null, "CPU");
 		Categoria cat5 = new Categoria(null, "Hardware");
 		Categoria cat6 = new Categoria(null, "Infraestrutura");
+		
+		Sites s1 = new Sites(null, "JBT");
+		Sites s2 = new Sites(null, "SJO");		
+		Sites s3 = new Sites(null, "MGC");
+		Sites s4 = new Sites(null, "J23");
+		Sites s5 = new Sites(null, "STS");
+		Sites s6 = new Sites(null, "NVA");
+		Sites s7 = new Sites(null, "MFL");
+		Sites s8 = new Sites(null, "EUS");
+		Sites s9 = new Sites(null, "SJC");
+		Sites s10 = new Sites(null, "IPR");
+		Sites s11 = new Sites(null, "BRF");
 
-		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100);
-		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100);
-		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100);
-		Produto prod4 = new Produto(null, "Dell 19", 80);
-		Produto prod5 = new Produto(null, "Dell 17", 10);
-		Produto prod6 = new Produto(null, "HP 19", 50);
-		Produto prod7 = new Produto(null, "Dell 3010", 18);
-		Produto prod8 = new Produto(null, "Dell 390", 1);
-		Produto prod9 = new Produto(null, "Teclado USB", 200);
-		Produto prod10 = new Produto(null, "Mouse USB", 150);
-		Produto prod11 = new Produto(null, "HD 500", 15);
-		Produto prod12 = new Produto(null, "Cabo de Força", 250);
+		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100, s1);
+		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100, s1);
+		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s1);
+		Produto prod4 = new Produto(null, "Dell 19", 80, s1);
+		Produto prod5 = new Produto(null, "Dell 17", 10, s1);
+		Produto prod6 = new Produto(null, "HP 19", 50, s1);
+		Produto prod7 = new Produto(null, "Dell 3010", 18, s1);
+		Produto prod8 = new Produto(null, "Dell 390", 1, s1);
+		Produto prod9 = new Produto(null, "Teclado USB", 200, s1);
+		Produto prod10 = new Produto(null, "Mouse USB", 150, s1);
+		Produto prod11 = new Produto(null, "HD 500", 15, s1);
+		Produto prod12 = new Produto(null, "Cabo de Força", 250, s1);
 
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
 		cat2.getProdutos().addAll(Arrays.asList(prod9, prod10));
@@ -75,6 +87,8 @@ public class DBService {
 		cat4.getProdutos().addAll(Arrays.asList(prod7, prod8));
 		cat5.getProdutos().addAll(Arrays.asList(prod11));
 		cat6.getProdutos().addAll(Arrays.asList(prod12));
+		
+		s1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
 
 		prod1.getCategorias().addAll(Arrays.asList(cat1));
 		prod2.getCategorias().addAll(Arrays.asList(cat1));
@@ -88,8 +102,11 @@ public class DBService {
 		prod10.getCategorias().addAll(Arrays.asList(cat2));
 		prod11.getCategorias().addAll(Arrays.asList(cat5));
 		prod12.getCategorias().addAll(Arrays.asList(cat6));
+		
+		
 
 		repoCategoria.save(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
+		repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 		repoProduto.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
 
 		// *************************************************
@@ -107,18 +124,6 @@ public class DBService {
 		Usuario u7 = new Usuario(null, "238564", "Gabriel Silva Goto", "gabriel.goto@neobpo.com.br", psw.encode("123456"));
 		Usuario u8 = new Usuario(null, "310075", "Marcelo Vicente Rosim", "marcelo.rosim@neobpo.com.br", psw.encode("123456"));
 		
-
-		Sites s1 = new Sites(null, "JBT");
-		Sites s2 = new Sites(null, "SJO");
-		Sites s10 = new Sites(null, "IPR");
-		Sites s3 = new Sites(null, "MGC");
-		Sites s4 = new Sites(null, "J23");
-		Sites s5 = new Sites(null, "STS");
-		Sites s6 = new Sites(null, "NVA");
-		Sites s7 = new Sites(null, "MFL");
-		Sites s8 = new Sites(null, "EUS");
-		Sites s9 = new Sites(null, "SJC");
-		Sites s11 = new Sites(null, "BRF");
 
 		u0.getSite().addAll(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 		u1.getSite().addAll(Arrays.asList(s1));
@@ -143,7 +148,7 @@ public class DBService {
 		s11.getUsuarios().addAll(Arrays.asList(u7, u8,u0));
 
 		repoUsuario.save(Arrays.asList(u0,u1, u2, u3, u4, u5, u6, u7, u8));
-		repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
+		//repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 
 		// **********************************************************************
 

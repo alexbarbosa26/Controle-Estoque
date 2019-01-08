@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.InventoryControl.domain.Categoria;
 import com.InventoryControl.domain.Produto;
+import com.InventoryControl.domain.Sites;
 import com.InventoryControl.dto.ProdutoDTO;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.CategoriaRepository;
 import com.InventoryControl.repositories.ProdutoRepository;
+import com.InventoryControl.repositories.SiteRepository;
 
 @Service
 public class ProdutoService {
@@ -23,6 +25,9 @@ public class ProdutoService {
 	
 	@Autowired
 	private CategoriaRepository repoCategoria;
+	
+	@Autowired
+	private SiteRepository repoSite;
 
 	//metodo que insere um novo produto via DTO
 	public Produto insert(Produto obj) {		
@@ -34,16 +39,25 @@ public class ProdutoService {
 	//metodo DTO que valida as informações lançadas pelo usuario
 	public Produto fromDTO(ProdutoDTO dto) {
 		
-		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade());
-		
 		Categoria categoria = repoCategoria.findOne(dto.getCodCategoria());
 		
-		categoria.getProdutos().addAll(Arrays.asList(produtos));		
+		Sites site = repoSite.findOne(dto.getCodSite());
+		
+		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade(), site);		
+		
+		categoria.getProdutos().addAll(Arrays.asList(produtos));
+		site.getProdutos().addAll(Arrays.asList(produtos));
 		produtos.getCategorias().addAll(Arrays.asList(categoria));
 		
 		
 		return produtos;
 		
+	}
+	
+	//metodo para busca de produtos por Site
+	public List<Produto> findBySite(Integer codSite, Integer codCategoria){
+		
+		return repo.findProdutos(codSite, codCategoria);
 	}
 
 	//metodo que faz a busca via codigo do produto

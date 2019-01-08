@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +30,10 @@ public class Sites implements Serializable {
 			joinColumns=@JoinColumn(name="site_cod"),
 			inverseJoinColumns=@JoinColumn(name="usuario_cod"))
 	private List<Usuario> usuarios = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="site")
+	private List<Produto> produtos = new ArrayList<>();
 	
 	public Sites() {
 		
@@ -62,6 +67,14 @@ public class Sites implements Serializable {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
