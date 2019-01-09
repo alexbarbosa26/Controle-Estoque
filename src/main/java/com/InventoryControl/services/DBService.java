@@ -148,7 +148,7 @@ public class DBService {
 		s11.getUsuarios().addAll(Arrays.asList(u7, u8,u0));
 
 		repoUsuario.save(Arrays.asList(u0,u1, u2, u3, u4, u5, u6, u7, u8));
-		//repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
+		repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 
 		// **********************************************************************
 
