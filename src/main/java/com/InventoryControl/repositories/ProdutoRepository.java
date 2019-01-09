@@ -23,6 +23,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 			@Param("categorias") List<Categoria> categorias, Pageable pageRequest);
 
 	@Transactional(readOnly=true)
-	@Query("SELECT obj FROM Produto obj INNER JOIN obj.categorias cat WHERE cat.codigo = :categoriaCod AND obj.site IN :site ORDER BY obj.nome")
-	public List<Produto> findProdutos(@Param("site") List<Sites> site, @Param("categoriaCod") Integer categoriaCod);
+	@Query("SELECT obj FROM Produto obj INNER JOIN obj.categorias cat WHERE cat = :categoriaCod AND obj.site IN :site ORDER BY obj.nome")
+	public List<Produto> findProdutos(@Param("site") List<Sites> site, @Param("categoriaCod") List<Categoria> categoriaCod);
 }

@@ -55,11 +55,12 @@ public class ProdutoService {
 	}
 	
 	//metodo para busca de produtos por um ou mais Sites e Categoria
-	public List<Produto> findByProduto(List<Integer> codSite, Integer codCategoria){
+	public List<Produto> findByProduto(List<Integer> codSite, List<Integer> codCategoria){
 		
 		List<Sites> sites = repoSite.findAll(codSite);
+		List<Categoria> categoria = repoCategoria.findAll(codCategoria);
 		
-		return repo.findProdutos(sites, codCategoria);
+		return repo.findProdutos(sites, categoria);
 	}
 
 	//metodo que faz a busca via codigo do produto

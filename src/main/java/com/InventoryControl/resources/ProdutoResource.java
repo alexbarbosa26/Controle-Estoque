@@ -50,10 +50,12 @@ public class ProdutoResource {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Produto>> findProdutos(
 			@RequestParam(value="sites", defaultValue="") String sites,
-			@RequestParam(value="categorias", defaultValue="") Integer codCategoria){
+			@RequestParam(value="categorias", defaultValue="") String codCategoria){
 				
 		List<Integer> ids = URL.decodeIntList(sites);
-		List<Produto> list = service.findByProduto(ids, codCategoria);
+		List<Integer> codCat = URL.decodeIntList(codCategoria);
+		
+		List<Produto> list = service.findByProduto(ids, codCat);
 		
 		return ResponseEntity.ok().body(list);
 		
