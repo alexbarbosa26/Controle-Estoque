@@ -70,7 +70,7 @@ public class DBService {
 
 		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100, s1);
 		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100, s1);
-		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s1);
+		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s11);
 		Produto prod4 = new Produto(null, "Dell 19", 80, s1);
 		Produto prod5 = new Produto(null, "Dell 17", 10, s1);
 		Produto prod6 = new Produto(null, "HP 19", 50, s1);
@@ -79,7 +79,7 @@ public class DBService {
 		Produto prod9 = new Produto(null, "Teclado USB", 200, s1);
 		Produto prod10 = new Produto(null, "Mouse USB", 150, s1);
 		Produto prod11 = new Produto(null, "HD 500", 15, s1);
-		Produto prod12 = new Produto(null, "Cabo de Força", 250, s1);
+		Produto prod12 = new Produto(null, "Cabo de Força", 250, s11);
 
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
 		cat2.getProdutos().addAll(Arrays.asList(prod9, prod10));
@@ -88,7 +88,8 @@ public class DBService {
 		cat5.getProdutos().addAll(Arrays.asList(prod11));
 		cat6.getProdutos().addAll(Arrays.asList(prod12));
 		
-		s1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
+		s1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11));
+		s11.getProdutos().addAll(Arrays.asList(prod3, prod12));
 
 		prod1.getCategorias().addAll(Arrays.asList(cat1));
 		prod2.getCategorias().addAll(Arrays.asList(cat1));

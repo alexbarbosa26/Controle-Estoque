@@ -2,22 +2,22 @@ package com.InventoryControl.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.InventoryControl.domain.Produto;
 import com.InventoryControl.dto.ProdutoDTO;
+import com.InventoryControl.resources.utils.URL;
 import com.InventoryControl.services.ProdutoService;
 
 @RestController
@@ -27,7 +27,7 @@ public class ProdutoResource {
 	@Autowired
 	private ProdutoService service;
 
-	@RequestMapping(method = RequestMethod.GET)
+	//@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Produto>> findAll() {
 		List<Produto> objList = service.findAll();
 
@@ -47,13 +47,15 @@ public class ProdutoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value="/{codSite}/{codCategoria}/sites/categorias",method=RequestMethod.GET)
-	public ResponseEntity<List<ProdutoDTO>> findProdutos(@PathVariable Integer codSite, @PathVariable Integer codCategoria){
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findProdutos(
+			@RequestParam(value="sites", defaultValue="") String sites,
+			@RequestParam(value="categorias", defaultValue="") Integer codCategoria){
+				
+		List<Integer> ids = URL.decodeIntList(sites);
+		List<Produto> list = service.findByProduto(ids, codCategoria);
 		
-		List<Produto> list = service.findBySite(codSite,codCategoria);
-		List<ProdutoDTO> listDto = list.stream().map(obj -> new ProdutoDTO(obj)).collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(listDto);
+		return ResponseEntity.ok().body(list);
 		
 	}
 }
