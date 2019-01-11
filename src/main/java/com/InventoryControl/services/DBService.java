@@ -70,7 +70,7 @@ public class DBService {
 
 		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100, s1);
 		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100, s1);
-		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s11);
+		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s1);
 		Produto prod4 = new Produto(null, "Dell 19", 80, s1);
 		Produto prod5 = new Produto(null, "Dell 17", 10, s1);
 		Produto prod6 = new Produto(null, "HP 19", 50, s1);
@@ -79,17 +79,22 @@ public class DBService {
 		Produto prod9 = new Produto(null, "Teclado USB", 200, s1);
 		Produto prod10 = new Produto(null, "Mouse USB", 150, s1);
 		Produto prod11 = new Produto(null, "HD 500", 15, s1);
-		Produto prod12 = new Produto(null, "Cabo de Força", 250, s11);
+		Produto prod12 = new Produto(null, "Cabo de Força", 250, s1);
+		Produto prod13 = new Produto(null, "Memória RAM DDR2 ", 15, s1);
+		Produto prod14 = new Produto(null, "Aparelho Avaya 1608", 120, s1);
+		Produto prod15 = new Produto(null, "Switch Avaya 4550T-PWR", 2, s1);
+		Produto prod16 = new Produto(null, "Switch Core Avaya 4550T-PWR", 2, s1);
+		Produto prod17 = new Produto(null, "Felitron Completo", 100, s1);
+		
 
-		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
+		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3,prod17));
 		cat2.getProdutos().addAll(Arrays.asList(prod9, prod10));
 		cat3.getProdutos().addAll(Arrays.asList(prod4, prod5, prod6));
 		cat4.getProdutos().addAll(Arrays.asList(prod7, prod8));
-		cat5.getProdutos().addAll(Arrays.asList(prod11));
-		cat6.getProdutos().addAll(Arrays.asList(prod12));
+		cat5.getProdutos().addAll(Arrays.asList(prod11,prod13,prod14));
+		cat6.getProdutos().addAll(Arrays.asList(prod12,prod15,prod16));
 		
-		s1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11));
-		s11.getProdutos().addAll(Arrays.asList(prod3, prod12));
+		s1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11,prod12,prod13,prod14,prod15,prod16,prod17));
 
 		prod1.getCategorias().addAll(Arrays.asList(cat1));
 		prod2.getCategorias().addAll(Arrays.asList(cat1));
@@ -103,12 +108,17 @@ public class DBService {
 		prod10.getCategorias().addAll(Arrays.asList(cat2));
 		prod11.getCategorias().addAll(Arrays.asList(cat5));
 		prod12.getCategorias().addAll(Arrays.asList(cat6));
+		prod13.getCategorias().addAll(Arrays.asList(cat5));
+		prod14.getCategorias().addAll(Arrays.asList(cat5));
+		prod15.getCategorias().addAll(Arrays.asList(cat6));
+		prod16.getCategorias().addAll(Arrays.asList(cat6));
+		prod17.getCategorias().addAll(Arrays.asList(cat1));
 		
 		
 
 		repoCategoria.save(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
 		repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
-		repoProduto.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12));
+		repoProduto.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12,prod13,prod14,prod15,prod16,prod17));
 
 		// *************************************************
 
