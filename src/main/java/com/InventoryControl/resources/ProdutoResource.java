@@ -27,7 +27,7 @@ public class ProdutoResource {
 	@Autowired
 	private ProdutoService service;
 
-	//@RequestMapping(method = RequestMethod.GET)
+	 @RequestMapping(value="/list-produto",method = RequestMethod.GET)
 	public ResponseEntity<List<Produto>> findAll() {
 		List<Produto> objList = service.findAll();
 
@@ -38,7 +38,7 @@ public class ProdutoResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ProdutoDTO objDTO) {
 		Produto obj = service.fromDTO(objDTO);
-		
+
 		obj = service.insert(obj);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getCodigo())
@@ -46,18 +46,45 @@ public class ProdutoResource {
 
 		return ResponseEntity.created(uri).build();
 	}
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Produto>> findProdutos(
-			@RequestParam(value="sites", defaultValue="") String sites,
-			@RequestParam(value="categorias", defaultValue="") String codCategoria){
-				
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findProdutos(@RequestParam(value = "sites", defaultValue = "") String sites,
+			@RequestParam(value = "categorias", defaultValue = "") String codCategoria) {
+
 		List<Integer> ids = URL.decodeIntList(sites);
 		List<Integer> codCat = URL.decodeIntList(codCategoria);
-		
+
 		List<Produto> list = service.findByProduto(ids, codCat);
-		
+
 		return ResponseEntity.ok().body(list);
-		
+
+	}
+
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public ResponseEntity<List<Produto>> dashboardProdutos(
+			@RequestParam(value = "sites", defaultValue = "") String sites,
+			@RequestParam(value = "categorias", defaultValue = "") String codCategoria) {
+
+		List<Integer> ids = URL.decodeIntList(sites);
+		List<Integer> codCat = URL.decodeIntList(codCategoria);
+
+		List<Produto> list = service.dashboardProduto(ids, codCat);
+
+		return ResponseEntity.ok().body(list);
+
+	}
+
+	@RequestMapping(value = "/dashboard/categoria", method = RequestMethod.GET)
+	public ResponseEntity<List<Produto>> dashboardProdutosCategoria(
+			@RequestParam(value = "sites", defaultValue = "") String sites,
+			@RequestParam(value = "categorias", defaultValue = "") String codCategoria) {
+
+		List<Integer> ids = URL.decodeIntList(sites);
+		List<Integer> codCat = URL.decodeIntList(codCategoria);
+
+		List<Produto> list = service.dashboardProdutoCategoria(ids, codCat);
+
+		return ResponseEntity.ok().body(list);
+
 	}
 }

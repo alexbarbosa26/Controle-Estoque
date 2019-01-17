@@ -22,48 +22,66 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository repo;
-	
+
 	@Autowired
 	private CategoriaRepository repoCategoria;
-	
+
 	@Autowired
 	private SiteRepository repoSite;
 
-	//metodo que insere um novo produto via DTO
-	public Produto insert(Produto obj) {		
+	// metodo que insere um novo produto via DTO
+	public Produto insert(Produto obj) {
 
 		repoCategoria.save(obj.getCategorias());
-		
+
 		return repo.save(obj);
 	}
-	//metodo DTO que valida as informações lançadas pelo usuario
+
+	// metodo DTO que valida as informações lançadas pelo usuario
 	public Produto fromDTO(ProdutoDTO dto) {
-		
+
 		Categoria categoria = repoCategoria.findOne(dto.getCodCategoria());
-		
+
 		Sites site = repoSite.findOne(dto.getCodSite());
-		
-		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade(), site);		
-		
+
+		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade(), site);
+
 		categoria.getProdutos().addAll(Arrays.asList(produtos));
 		site.getProdutos().addAll(Arrays.asList(produtos));
 		produtos.getCategorias().addAll(Arrays.asList(categoria));
-		
-		
+
 		return produtos;
-		
+
 	}
-	
-	//metodo para busca de produtos por um ou mais Sites e Categoria
-	public List<Produto> findByProduto(List<Integer> codSite, List<Integer> codCategoria){
-		
+
+	// metodo para busca de produtos por um ou mais Sites e Categoria
+	public List<Produto> findByProduto(List<Integer> codSite, List<Integer> codCategoria) {
+
 		List<Sites> sites = repoSite.findAll(codSite);
 		List<Categoria> categoria = repoCategoria.findAll(codCategoria);
-		
+
 		return repo.findProdutos(sites, categoria);
 	}
 
-	//metodo que faz a busca via codigo do produto
+	// metodo para busca de produtos por um ou mais Sites e Categoria
+	public List<Produto> dashboardProduto(List<Integer> codSite, List<Integer> codCategoria) {
+
+		List<Sites> sites = repoSite.findAll(codSite);
+		List<Categoria> categoria = repoCategoria.findAll(codCategoria);
+
+		return repo.dashboardProduto(sites, categoria);
+	}
+
+	// metodo para busca de produtos por um ou mais Sites e Categoria
+	public List<Produto> dashboardProdutoCategoria(List<Integer> codSite, List<Integer> codCategoria) {
+
+		List<Sites> sites = repoSite.findAll(codSite);
+		List<Categoria> categoria = repoCategoria.findAll(codCategoria);
+
+		return repo.dashboardProdutoCategoria(sites, categoria);
+	}
+
+	// metodo que faz a busca via codigo do produto
 	public Produto buscarId(Integer cod) {
 
 		Produto obj = repo.findOne(cod);
@@ -73,18 +91,18 @@ public class ProdutoService {
 		return obj;
 	}
 
-	//metodo que lista todos os produtos
+	// metodo que lista todos os produtos
 	public List<Produto> findAll() {
 		return repo.findAll();
 	}
 
-	//metodo que atualiza as informações dos produtos
+	// metodo que atualiza as informações dos produtos
 	public Produto update(Produto obj) {
 		buscarId(obj.getCodigo());
 		return repo.save(obj);
 	}
 
-	//metodo que deteleta os produtos
+	// metodo que deteleta os produtos
 	public void delete(Integer cod) {
 		buscarId(cod);
 		try {
