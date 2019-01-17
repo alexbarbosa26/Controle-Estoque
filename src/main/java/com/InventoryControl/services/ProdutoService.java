@@ -80,6 +80,14 @@ public class ProdutoService {
 
 		return repo.dashboardProdutoCategoria(sites, categoria);
 	}
+	
+	// metodo para busca de produtos por um ou mais Sites e Categoria
+		public List<Produto> dashboardProdutoAllCategoria(List<Integer> codSite) {
+
+			List<Sites> sites = repoSite.findAll(codSite);
+
+			return repo.dashboardProdutoAllCategoria(sites);
+		}
 
 	// metodo que faz a busca via codigo do produto
 	public Produto buscarId(Integer cod) {
@@ -93,7 +101,7 @@ public class ProdutoService {
 
 	// metodo que lista todos os produtos
 	public List<Produto> findAll() {
-		return repo.findAll();
+		return repo.findAllOrderByQuantidade();
 	}
 
 	// metodo que atualiza as informações dos produtos

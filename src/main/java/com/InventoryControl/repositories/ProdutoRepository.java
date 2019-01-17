@@ -36,4 +36,12 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Query("SELECT cat.nome, SUM(obj.quantidade) as qtd FROM Produto obj INNER JOIN obj.categorias cat WHERE cat IN :categoriaCod AND obj.site IN :site GROUP BY cat.nome ")
 	public List<Produto> dashboardProdutoCategoria(@Param("site") List<Sites> site,
 			@Param("categoriaCod") List<Categoria> categoriaCod);
+	
+	@Transactional(readOnly = true)
+	@Query("SELECT cat.nome, SUM(obj.quantidade) as qtd FROM Produto obj INNER JOIN obj.categorias cat WHERE obj.quantidade > 0 AND obj.site IN :site GROUP BY cat.nome ")
+	public List<Produto> dashboardProdutoAllCategoria(@Param("site") List<Sites> site);
+	
+	@Transactional(readOnly = true)
+	@Query("SELECT obj FROM Produto obj WHERE obj.quantidade > 0 ORDER BY obj.quantidade DESC")
+	public List<Produto> findAllOrderByQuantidade();
 }
