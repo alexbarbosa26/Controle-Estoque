@@ -18,6 +18,8 @@ public class ProdutoDTO implements Serializable {
 	//@Pattern(regexp = "[\\s]*[0-9]*[1-9]+",message="Somente números")
 	private Integer quantidade;
 	
+	private String imagem;
+	
 	private Integer codCategoria;
 	
 	private Integer codSite;
@@ -29,6 +31,7 @@ public class ProdutoDTO implements Serializable {
 		codigo = obj.getCodigo();
 		nome = obj.getNome();
 		quantidade = obj.getQuantidade();
+		imagem = obj.getImagem();
 	}
 	
 	public Integer getCodigo() {
@@ -53,6 +56,14 @@ public class ProdutoDTO implements Serializable {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}	
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 	public Integer getCodCategoria() {

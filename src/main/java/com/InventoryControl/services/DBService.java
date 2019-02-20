@@ -68,23 +68,23 @@ public class DBService {
 		Sites s10 = new Sites(null, "IPR");
 		Sites s11 = new Sites(null, "BRF");
 
-		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100, s1);
-		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100, s1);
-		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100, s1);
-		Produto prod4 = new Produto(null, "Dell 19", 80, s1);
-		Produto prod5 = new Produto(null, "Dell 17", 10, s1);
-		Produto prod6 = new Produto(null, "HP 19", 50, s1);
-		Produto prod7 = new Produto(null, "Dell 3010", 18, s1);
-		Produto prod8 = new Produto(null, "Dell 390", 1, s1);
-		Produto prod9 = new Produto(null, "Teclado USB", 200, s1);
-		Produto prod10 = new Produto(null, "Mouse USB", 150, s1);
-		Produto prod11 = new Produto(null, "HD 500", 15, s1);
-		Produto prod12 = new Produto(null, "Cabo de Força", 250, s1);
-		Produto prod13 = new Produto(null, "Memória RAM DDR2 ", 15, s1);
-		Produto prod14 = new Produto(null, "Aparelho Avaya 1608", 120, s1);
-		Produto prod15 = new Produto(null, "Switch Avaya 4550T-PWR", 2, s1);
-		Produto prod16 = new Produto(null, "Switch Core Avaya 4550T-PWR", 2, s1);
-		Produto prod17 = new Produto(null, "Felitron Completo", 100, s1);
+		Produto prod1 = new Produto(null, "Conector Felitron USB - Inferior", 100,"felitron_inferior_usb", s1);
+		Produto prod2 = new Produto(null, "Conector Felitron RJ11 - Inferior", 100,"felitron_inferior_rj", s1);
+		Produto prod3 = new Produto(null, "Felitron Parte Superior", 100,"felitron_superior", s1);
+		Produto prod4 = new Produto(null, "Dell 19", 80,"monitor_dell_19", s1);
+		Produto prod5 = new Produto(null, "Dell 17", 10,"monitor_dell_17", s1);
+		Produto prod6 = new Produto(null, "HP 19", 50,"monitor_hp_19", s1);
+		Produto prod7 = new Produto(null, "Dell 3010", 18,"cpu_dell_3010", s1);
+		Produto prod8 = new Produto(null, "Dell 390", 1,"cpu_dell_390", s1);
+		Produto prod9 = new Produto(null, "Teclado USB", 200,"teclado_usb", s1);
+		Produto prod10 = new Produto(null, "Mouse USB", 150,"mouse_usb", s1);
+		Produto prod11 = new Produto(null, "HD 500", 15,"hd", s1);
+		Produto prod12 = new Produto(null, "Cabo de Força", 250,"cabo_forca", s1);
+		Produto prod13 = new Produto(null, "Memória RAM DDR2 ", 15,"memoria_ram", s1);
+		Produto prod14 = new Produto(null, "Aparelho Avaya 1608", 120,"aparelho_avaya", s1);
+		Produto prod15 = new Produto(null, "Switch Avaya 4550T-PWR", 2,"switch", s1);
+		Produto prod16 = new Produto(null, "Switch Core Avaya 4550T-PWR", 2,"switch_core", s1);
+		Produto prod17 = new Produto(null, "Felitron Completo", 100,"felitron_completo", s1);
 		
 
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3,prod17));
@@ -127,7 +127,7 @@ public class DBService {
 		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"));
 		u1.addPerfil(Perfil.ADMIN);
 		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br", psw.encode("123456"));
-		Usuario u3 = new Usuario(null, "222230", "Diego Pimentel Belo Lopes", "diego.belo@neobpo.com.br", psw.encode("123456"));
+		Usuario u3 = new Usuario(null, "222230", "Alexandre Santos", "alexandre.santos@neobpo.com.br", psw.encode("123456"));
 		Usuario u4 = new Usuario(null, "231880", "Lucas Natario Da Silva", "lucas.natario@neobpo.com.br", psw.encode("123456"));
 		Usuario u5 = new Usuario(null, "225493", "Renan Dos Santos Tampellini", "renan.rtampellini@neobpo.com.br",
 				psw.encode("123456"));

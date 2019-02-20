@@ -27,6 +27,7 @@ public class Produto implements Serializable {
 	private Integer codigo;
 	private String nome;
 	private Integer quantidade;
+	private String imagem;
 	
 	@JsonIgnore
 	@ManyToMany()
@@ -49,11 +50,12 @@ public class Produto implements Serializable {
 		
 	}
 
-	public Produto(Integer codigo, String nome, Integer quantidade, Sites site) {
+	public Produto(Integer codigo, String nome, Integer quantidade,String imagem, Sites site) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.quantidade = quantidade;
+		this.imagem=imagem;
 		this.site = site;
 	}
 		
@@ -97,6 +99,14 @@ public class Produto implements Serializable {
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 	public Set<ItemTroca> getItens() {

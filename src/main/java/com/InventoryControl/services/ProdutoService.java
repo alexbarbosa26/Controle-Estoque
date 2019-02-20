@@ -44,7 +44,7 @@ public class ProdutoService {
 
 		Sites site = repoSite.findOne(dto.getCodSite());
 
-		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade(), site);
+		Produto produtos = new Produto(null, dto.getNome(), dto.getQuantidade(),dto.getImagem(), site);
 
 		categoria.getProdutos().addAll(Arrays.asList(produtos));
 		site.getProdutos().addAll(Arrays.asList(produtos));
