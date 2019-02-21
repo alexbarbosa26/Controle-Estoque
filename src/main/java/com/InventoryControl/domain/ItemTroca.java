@@ -16,16 +16,18 @@ public class ItemTroca implements Serializable {
 	private ItemTrocaPK codigo = new ItemTrocaPK();
 
 	private Integer quantidadeTroca;
+	private String numeroChamado;
 
 	public ItemTroca() {
 
 	}
 
-	public ItemTroca(Trocas troca, Produto produto, Integer quantidadeTroca) {
+	public ItemTroca(Trocas troca, Produto produto, Integer quantidadeTroca, String numeroChamado) {
 		super();
 		codigo.setTroca(troca);
 		codigo.setProduto(produto);
 		this.quantidadeTroca = quantidadeTroca;
+		this.numeroChamado = numeroChamado;
 	}
 	/*
 	 * public Integer getSobra() { if(quantidadeTroca != 0 &&
@@ -67,6 +69,14 @@ public class ItemTroca implements Serializable {
 
 	public void setQuantidadeTroca(Integer quantidadeTroca) {
 		this.quantidadeTroca = quantidadeTroca;
+	}	
+
+	public String getNumeroChamado() {
+		return numeroChamado;
+	}
+
+	public void setNumeroChamado(String numeroChamado) {
+		this.numeroChamado = numeroChamado;
 	}
 
 	@Override

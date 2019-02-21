@@ -31,6 +31,10 @@ public class Trocas implements Serializable {
 	@JoinColumn(name="usuario_cod")
 	private Usuario usuario;
 	
+	@ManyToOne
+	@JoinColumn(name="cliente_cod")
+	private Cliente cliente;
+	
 	@OneToMany(mappedBy="codigo.troca")
 	private Set<ItemTroca> itens = new HashSet<>();
 	
@@ -38,11 +42,12 @@ public class Trocas implements Serializable {
 		
 	}
 
-	public Trocas(Integer codigo, Date dataTroca, Usuario usuario) {
+	public Trocas(Integer codigo, Date dataTroca, Usuario usuario, Cliente cliente) {
 		super();
 		this.codigo = codigo;
 		this.dataTroca = dataTroca;
 		this.usuario = usuario;
+		this.cliente = cliente;
 	}
 	
 	/*
@@ -85,6 +90,14 @@ public class Trocas implements Serializable {
 
 	public void setItens(Set<ItemTroca> itens) {
 		this.itens = itens;
+	}	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override

@@ -8,15 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Sites implements Serializable {
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,29 +22,21 @@ public class Sites implements Serializable {
 	private Integer codigo;
 	private String nome;
 	
-	@JsonIgnore
-	@ManyToMany()
-	@JoinTable(name="USUARIOS_SITES",
-			joinColumns=@JoinColumn(name="site_cod"),
-			inverseJoinColumns=@JoinColumn(name="usuario_cod"))
-	private List<Usuario> usuarios = new ArrayList<>();
+	@ManyToMany(mappedBy="clientes")
+	private List<Sites> site=new ArrayList<>();
 	
 	@JsonIgnore
-	@ManyToMany()
-	@JoinTable(name="CLIENTES_SITES",
-			joinColumns=@JoinColumn(name="site_cod"),
-			inverseJoinColumns=@JoinColumn(name="cliente_cod"))
-	private List<Cliente> clientes = new ArrayList<>();
+	@OneToMany(mappedBy="cliente")
+	private List<Celula> celulas = new ArrayList<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="site")
-	private List<Produto> produtos = new ArrayList<>();
+	@OneToMany(mappedBy="cliente")
+	private List<Trocas> trocas = new ArrayList<>();
 	
-	public Sites() {
-		
+	public Cliente() {		
 	}
-
-	public Sites(Integer codigo, String nome) {
+	
+	public Cliente(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -68,28 +58,28 @@ public class Sites implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public List<Celula> getCelulas() {
+		return celulas;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setCelulas(List<Celula> celulas) {
+		this.celulas = celulas;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<Sites> getSite() {
+		return site;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
-	public List<Cliente> getClientes() {
-		return clientes;
+	public void setSite(List<Sites> site) {
+		this.site = site;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public List<Trocas> getTrocas() {
+		return trocas;
+	}
+
+	public void setTrocas(List<Trocas> trocas) {
+		this.trocas = trocas;
 	}
 
 	@Override
@@ -108,7 +98,7 @@ public class Sites implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sites other = (Sites) obj;
+		Cliente other = (Cliente) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -116,6 +106,7 @@ public class Sites implements Serializable {
 			return false;
 		return true;
 	}
-
 	
+	
+			
 }

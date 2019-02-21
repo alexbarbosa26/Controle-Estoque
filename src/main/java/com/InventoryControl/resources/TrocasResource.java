@@ -47,7 +47,7 @@ public class TrocasResource {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/page",method=RequestMethod.GET)
 	public ResponseEntity<Page<Trocas>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
