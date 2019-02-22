@@ -50,10 +50,10 @@ public class ClienteService {
 	//Metodo DTO para validar as informações lançadas pelo usuario
 	public Cliente fromDTO(ClienteDTO objDTO) {
 		
-		Sites site = serviceSite.buscarId(objDTO.getSite_cod());
-		
 		Cliente cliente = new Cliente(null, objDTO.getNome());
 		
+		Sites site = serviceSite.buscarId(objDTO.getSite_cod());
+				
 		site.getClientes().addAll(Arrays.asList(cliente));
 		
 		return cliente;
