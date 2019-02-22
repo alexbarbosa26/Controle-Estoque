@@ -11,7 +11,7 @@ public class ProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer codigo;
-	@NotEmpty(message="Preenchimento Obrigátorio")
+	@NotEmpty(message="Preenchimento Obrigatório")
 	@Length(min = 5, max = 150, message = "Deve conter entre 5 e 150 caracteres")
 	private String nome;
 	
