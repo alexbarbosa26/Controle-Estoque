@@ -13,7 +13,7 @@ public class ClienteDTO implements Serializable {
 	private Integer codigo;
 	
 	@NotEmpty(message="Preenchimento Obrigatório")
-	@Length(min = 5, max = 150, message = "Deve conter entre 5 e 150 caracteres")
+	@Length(min = 3, max = 150, message = "Deve conter entre 3 e 150 caracteres")
 	private String nome;
 	
 	private Integer site_cod;
