@@ -20,6 +20,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repoCliente;
 	
+	@Autowired
 	private SiteService serviceSite;
 	
 	//metodo para buscar cliente pelo codigo

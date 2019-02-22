@@ -19,7 +19,8 @@ public class CelulaService {
 
 	@Autowired
 	private CelulaRepository repoCelula;
-		
+	
+	@Autowired
 	private ClienteService serviceCliente;
 
 	//Metodo para buscar via Codigo
