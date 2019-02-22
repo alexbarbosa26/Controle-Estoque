@@ -30,11 +30,7 @@ public class Trocas implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="usuario_cod")
 	private Usuario usuario;
-	
-	@ManyToOne
-	@JoinColumn(name="cliente_cod")
-	private Cliente cliente;
-	
+		
 	@ManyToOne
 	@JoinColumn(name="celula_cod")
 	private Celula celula;
@@ -46,12 +42,11 @@ public class Trocas implements Serializable {
 		
 	}
 
-	public Trocas(Integer codigo, Date dataTroca, Usuario usuario, Cliente cliente, Celula celula) {
+	public Trocas(Integer codigo, Date dataTroca, Usuario usuario, Celula celula) {
 		super();
 		this.codigo = codigo;
 		this.dataTroca = dataTroca;
 		this.usuario = usuario;
-		this.cliente = cliente;
 		this.celula = celula;
 	}
 	
@@ -95,14 +90,6 @@ public class Trocas implements Serializable {
 
 	public void setItens(Set<ItemTroca> itens) {
 		this.itens = itens;
-	}	
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}	
 
 	public Celula getCelula() {

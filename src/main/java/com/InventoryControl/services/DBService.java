@@ -209,11 +209,10 @@ public class DBService {
 
 		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Trocas t1 = new Trocas(null, date.parse("28/11/2018 12:00"), u1, cli1, cel1);
-		Trocas t2 = new Trocas(null, date.parse("28/11/2018 12:00"), u1, cli1, cel2);
+		Trocas t1 = new Trocas(null, date.parse("28/11/2018 12:00"), u1, cel1);
+		Trocas t2 = new Trocas(null, date.parse("28/11/2018 12:00"), u1, cel5);
 
 		u1.getTrocas().addAll(Arrays.asList(t1, t2));
-		cli1.getTrocas().addAll(Arrays.asList(t1,t2));
 
 		repoTrocas.save(Arrays.asList(t1, t2));
 

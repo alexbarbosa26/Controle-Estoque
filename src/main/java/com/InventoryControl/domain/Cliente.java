@@ -29,9 +29,6 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Celula> celulas = new ArrayList<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
-	private List<Trocas> trocas = new ArrayList<>();
 	
 	public Cliente() {		
 	}
@@ -72,14 +69,6 @@ public class Cliente implements Serializable {
 
 	public void setSite(List<Sites> site) {
 		this.site = site;
-	}
-
-	public List<Trocas> getTrocas() {
-		return trocas;
-	}
-
-	public void setTrocas(List<Trocas> trocas) {
-		this.trocas = trocas;
 	}
 
 	@Override
