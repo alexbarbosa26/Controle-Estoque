@@ -52,9 +52,14 @@ public class ClienteService {
 		
 		Cliente cliente = new Cliente(null, objDTO.getNome());
 		
-		Sites site = serviceSite.buscarId(objDTO.getSite_cod());
-				
-		site.getClientes().addAll(Arrays.asList(cliente));
+		List<Integer> obj = objDTO.getSite_cod();
+		
+		for(Integer st: obj ) {
+			
+			Sites site = serviceSite.buscarId(st);
+			
+			site.getClientes().addAll(Arrays.asList(cliente));
+		}		
 		
 		return cliente;
 	}

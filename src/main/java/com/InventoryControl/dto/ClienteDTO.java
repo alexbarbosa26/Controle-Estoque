@@ -1,11 +1,14 @@
 package com.InventoryControl.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.InventoryControl.domain.Cliente;
+import com.InventoryControl.domain.Sites;
 
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +19,7 @@ public class ClienteDTO implements Serializable {
 	@Length(min = 3, max = 150, message = "Deve conter entre 3 e 150 caracteres")
 	private String nome;
 	
-	private Integer site_cod;
+	private List<Integer> site_cod = new ArrayList<>();
 	
 	public ClienteDTO() {
 		
@@ -44,12 +47,13 @@ public class ClienteDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getSite_cod() {
+	public List<Integer> getSite_cod() {
 		return site_cod;
 	}
 
-	public void setSite_cod(Integer site_cod) {
+	public void setSite_cod(List<Integer> site_cod) {
 		this.site_cod = site_cod;
-	}	
+	}
+	
 	
 }
