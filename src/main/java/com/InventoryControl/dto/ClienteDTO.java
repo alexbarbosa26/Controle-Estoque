@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.InventoryControl.domain.Cliente;
-import com.InventoryControl.domain.Sites;
 
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
