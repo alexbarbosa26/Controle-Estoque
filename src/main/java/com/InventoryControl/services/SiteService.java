@@ -54,5 +54,18 @@ public class SiteService {
 		
 		
 	}
+	
+	
+	public List<Sites> findSiteCli(Integer codigo){
+		
+		List<Sites> obj = repo.findSitesByClientes(codigo); 
+		
+		if(obj == null) {
+			throw new ObjectNotFoundException("Codigo: "+ codigo, "não encontrado, favor verificar o codigo digitado!");
+		}
+		
+		return obj;
+		
+	}
 
 }

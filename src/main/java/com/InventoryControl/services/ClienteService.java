@@ -13,6 +13,7 @@ import com.InventoryControl.domain.Sites;
 import com.InventoryControl.dto.ClienteDTO;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.ClienteRepository;
+import com.InventoryControl.repositories.SiteRepository;
 
 @Service
 public class ClienteService {
@@ -22,6 +23,9 @@ public class ClienteService {
 
 	@Autowired
 	private SiteService serviceSite;
+
+	@Autowired
+	private SiteRepository repoSite;
 
 	// metodo para buscar cliente pelo codigo
 	public Cliente buscarId(Integer codigo) {
@@ -73,6 +77,7 @@ public class ClienteService {
 		updateData(newObj, obj);
 
 		return repoCliente.save(newObj);
+
 	}
 
 	// Metodo para excluir o cliente
@@ -83,23 +88,28 @@ public class ClienteService {
 
 		} catch (DataIntegrityViolationException e) {
 
-			throw new DataIntegrityException("Não é possivel excluir um cliente que possui celula");
+			throw new DataIntegrityException("Não é possivel excluir um cliente que possui célula");
 		}
 
 	}
 
 	// Metodo DTO para validar as informações lançadas pelo usuario
-	public Cliente fromDtoUpdate(ClienteDTO objDTO) {
+	public Cliente fromDtoUpdate(ClienteDTO objDTO, Integer id) {
 
 		Cliente cliente = new Cliente(objDTO.getCodigo(), objDTO.getNome());
 
 		List<Integer> obj = objDTO.getSite_cod();
 
-		for (Integer st : obj) {
+		List<Sites> newObj = repoSite.findSitesByClientes(id);
 
-			Sites site = serviceSite.buscarId(st);
+		if (!newObj.contains(obj)) {
+			for (Integer st : obj) {
+				Sites site = serviceSite.buscarId(st);
 
-			site.getClientes().addAll(Arrays.asList(cliente));
+				site.getClientes().addAll(Arrays.asList(cliente));
+
+			}
+			
 		}
 
 		return cliente;
@@ -108,7 +118,7 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 
 		newObj.setNome(obj.getNome());
-		newObj.setSite(null);
+		newObj.setSite(obj.getSite());
 
 	}
 

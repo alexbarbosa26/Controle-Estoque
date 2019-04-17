@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,23 +17,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
 	private String nome;
-	
-	@ManyToMany(mappedBy="clientes")
-	private List<Sites> site=new ArrayList<>();
-	
+
+	@ManyToMany(mappedBy = "clientes", cascade = CascadeType.ALL)
+	private List<Sites> site = new ArrayList<>();
+
 	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Celula> celulas = new ArrayList<>();
-	
-	
-	public Cliente() {		
+
+	public Cliente() {
 	}
-	
+
 	public Cliente(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
@@ -95,7 +95,5 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-			
+
 }
