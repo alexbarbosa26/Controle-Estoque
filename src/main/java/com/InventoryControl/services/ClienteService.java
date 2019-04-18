@@ -98,23 +98,26 @@ public class ClienteService {
 
 		Cliente cliente = new Cliente(objDTO.getCodigo(), objDTO.getNome());
 
-		List<Integer> obj = objDTO.getSite_cod();
+		List<Integer> listSitesID = objDTO.getSite_cod();
 
-		List<Sites> newObj = repoSite.findSitesByClientes(id);
+		List<Sites> listSites = repoSite.findSitesByClientes(id);
 
-		if (!newObj.contains(obj)) {
-			for (Integer st : obj) {
-				Sites site = serviceSite.buscarId(st);
-
-				site.getClientes().addAll(Arrays.asList(cliente));
-
+		for (Integer siteId : listSitesID) {
+			Boolean existe = false;
+			for (Sites list : listSites) {
+				if (siteId == list.getCodigo()) {
+					existe = true;
+				}
 			}
-			
+			if (!existe) {
+				Sites site = serviceSite.buscarId(siteId);
+				site.getClientes().add(cliente);
+			}
 		}
-
 		return cliente;
 	}
 
+	
 	private void updateData(Cliente newObj, Cliente obj) {
 
 		newObj.setNome(obj.getNome());
