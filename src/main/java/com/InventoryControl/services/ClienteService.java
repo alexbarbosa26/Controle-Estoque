@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.InventoryControl.domain.Cliente;
 import com.InventoryControl.domain.Sites;
 import com.InventoryControl.dto.ClienteDTO;
+import com.InventoryControl.dto.ClienteUpdateDTO;
+import com.InventoryControl.enums.Situacao;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.ClienteRepository;
 import com.InventoryControl.repositories.SiteRepository;
@@ -55,7 +57,7 @@ public class ClienteService {
 	// Metodo DTO para validar as informações lançadas pelo usuario
 	public Cliente fromDTO(ClienteDTO objDTO) {
 
-		Cliente cliente = new Cliente(null, objDTO.getNome());
+		Cliente cliente = new Cliente(null, objDTO.getNome(),Situacao.toEnum(objDTO.getSituacao()));
 
 		List<Integer> obj = objDTO.getSite_cod();
 
@@ -94,9 +96,9 @@ public class ClienteService {
 	}
 
 	// Metodo DTO para validar as informações lançadas pelo usuario
-	public Cliente fromDtoUpdate(ClienteDTO objDTO, Integer id) {
+	public Cliente fromDtoUpdate(ClienteUpdateDTO objDTO, Integer id) {
 
-		Cliente cliente = new Cliente(objDTO.getCodigo(), objDTO.getNome());
+		Cliente cliente = new Cliente(objDTO.getCodigo(), objDTO.getNome(), Situacao.toEnum(objDTO.getSituacao()));
 
 		List<Integer> listSitesID = objDTO.getSite_cod();
 
@@ -121,6 +123,7 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 
 		newObj.setNome(obj.getNome());
+		newObj.setSituacao(obj.getSituacao());
 		newObj.setSite(obj.getSite());
 
 	}

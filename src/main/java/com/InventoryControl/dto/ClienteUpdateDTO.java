@@ -7,11 +7,11 @@ import java.util.List;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.InventoryControl.services.validation.ClienteInsert;
+import com.InventoryControl.domain.Cliente;
 
-@ClienteInsert
-public class ClienteDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ClienteUpdateDTO implements Serializable{
+
+private static final long serialVersionUID = 1L;
 	
 	private Integer codigo;
 	
@@ -22,8 +22,14 @@ public class ClienteDTO implements Serializable {
 	
 	private List<Integer> site_cod = new ArrayList<>();
 	
-	public ClienteDTO() {
+	public ClienteUpdateDTO() {
 		
+	}
+	
+	public ClienteUpdateDTO(Cliente dto) {
+		
+		codigo=dto.getCodigo();
+		nome=dto.getNome();
 	}
 
 	public Integer getCodigo() {
@@ -40,7 +46,7 @@ public class ClienteDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
+	}	
 
 	public Integer getSituacao() {
 		return situacao;
@@ -57,6 +63,4 @@ public class ClienteDTO implements Serializable {
 	public void setSite_cod(List<Integer> site_cod) {
 		this.site_cod = site_cod;
 	}
-	
-	
 }

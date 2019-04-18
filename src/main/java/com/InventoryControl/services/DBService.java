@@ -17,6 +17,7 @@ import com.InventoryControl.domain.Sites;
 import com.InventoryControl.domain.Trocas;
 import com.InventoryControl.domain.Usuario;
 import com.InventoryControl.enums.Perfil;
+import com.InventoryControl.enums.Situacao;
 import com.InventoryControl.repositories.CategoriaRepository;
 import com.InventoryControl.repositories.CelulaRepository;
 import com.InventoryControl.repositories.ClienteRepository;
@@ -175,14 +176,14 @@ public class DBService {
 		//repoSite.save(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 		
 		// **********************************************************************
-		Cliente cli1 = new Cliente(null, "NET");
-		Cliente cli2 = new Cliente(null, "NEOENERGIA");
-		Cliente cli3 = new Cliente(null, "NEXTEL");
-		Cliente cli4 = new Cliente(null, "CLARO");
-		Cliente cli5 = new Cliente(null, "CIELO");
-		Cliente cli6 = new Cliente(null, "TIM");
-		Cliente cli7 = new Cliente(null, "BRASIL CAP");
-		Cliente cli8 = new Cliente(null, "FIRST DATA");
+		Cliente cli1 = new Cliente(null, "NET", Situacao.ATIVO);
+		Cliente cli2 = new Cliente(null, "NEOENERGIA", Situacao.ATIVO);
+		Cliente cli3 = new Cliente(null, "NEXTEL", Situacao.ATIVO);
+		Cliente cli4 = new Cliente(null, "CLARO", Situacao.ATIVO);
+		Cliente cli5 = new Cliente(null, "CIELO", Situacao.ATIVO);
+		Cliente cli6 = new Cliente(null, "TIM", Situacao.ATIVO);
+		Cliente cli7 = new Cliente(null, "BRASIL CAP", Situacao.ATIVO);
+		Cliente cli8 = new Cliente(null, "FIRST DATA", Situacao.ATIVO);
 
 		Celula cel1 = new Celula(null, "CELPE", "00000-00", cli2);
 		Celula cel2 = new Celula(null, "COELBA", "00000-00", cli2);
