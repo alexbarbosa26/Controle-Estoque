@@ -131,24 +131,24 @@ public class DBService {
 
 		// *************************************************
 
-		Usuario u0 = new Usuario(null, "000000", "sysadmin", "sysadmin@neobpo.com.br", psw.encode("sysadmin"));
+		Usuario u0 = new Usuario(null, "000000", "sysadmin", "sysadmin@neobpo.com.br", psw.encode("sysadmin"), Situacao.ATIVO);
 		u0.addPerfil(Perfil.ADMIN);
-		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"));
+		Usuario u1 = new Usuario(null, "213787", "Alex Barbosa", "alex.asilva@neobpo.com.br", psw.encode("123456"), Situacao.ATIVO);
 		u1.addPerfil(Perfil.ADMIN);
 		Usuario u2 = new Usuario(null, "097207", "Guilherme Teixeira", "guilherme.teixeira@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u3 = new Usuario(null, "222230", "Alexandre Santos", "alexandre.santos@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u4 = new Usuario(null, "231880", "Lucas Natario Da Silva", "lucas.natario@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u5 = new Usuario(null, "225493", "Renan Dos Santos Tampellini", "renan.rtampellini@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u6 = new Usuario(null, "294860", "Roberto Coelho", "roberto.coelho@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u7 = new Usuario(null, "238564", "Gabriel Silva Goto", "gabriel.goto@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 		Usuario u8 = new Usuario(null, "310075", "Marcelo Vicente Rosim", "marcelo.rosim@neobpo.com.br",
-				psw.encode("123456"));
+				psw.encode("123456"), Situacao.ATIVO);
 
 		u0.getSite().addAll(Arrays.asList(s1, s2, s10, s3, s4, s5, s6, s7, s8, s9, s11));
 		u1.getSite().addAll(Arrays.asList(s1));

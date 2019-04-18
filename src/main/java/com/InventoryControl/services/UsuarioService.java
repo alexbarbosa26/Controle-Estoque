@@ -13,6 +13,7 @@ import com.InventoryControl.domain.Sites;
 import com.InventoryControl.domain.Usuario;
 import com.InventoryControl.dto.UsuarioDTO;
 import com.InventoryControl.enums.Perfil;
+import com.InventoryControl.enums.Situacao;
 import com.InventoryControl.exceptions.AuthorizationException;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.SiteRepository;
@@ -62,7 +63,7 @@ public class UsuarioService {
 	//metodo DTO que valida os dados lançados pelo usuario
 	public Usuario fromDTO(UsuarioDTO dto) {
 		
-		Usuario usuario = new Usuario(null, dto.getMatricula(), dto.getNome(), dto.getEmail(), psw.encode(dto.getSenha()));
+		Usuario usuario = new Usuario(null, dto.getMatricula(), dto.getNome(), dto.getEmail(), psw.encode(dto.getSenha()), Situacao.toEnum(dto.getSituacao()));
 		Sites site = repoSite.findOne(dto.getCodSite());
 		
 		usuario.getSite().addAll(Arrays.asList(site));

@@ -61,7 +61,7 @@ public class CelulaService {
 		
 		cliente.getCelulas().addAll(Arrays.asList(celula));
 		
-		return repoCelula.save(celula);
+		return celula;
 	}
 	
 	//Metodo para atualizar os dados

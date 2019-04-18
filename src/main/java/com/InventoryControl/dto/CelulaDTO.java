@@ -5,8 +5,6 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.InventoryControl.domain.Celula;
-
 public class CelulaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,12 +20,6 @@ public class CelulaDTO implements Serializable {
 	
 	public CelulaDTO() {
 		
-	}
-	
-	public CelulaDTO(Celula dto) {
-		codigo=dto.getCodigo();
-		nome=dto.getNome();	
-		pep=dto.getPep();
 	}
 
 	public Integer getCodigo() {

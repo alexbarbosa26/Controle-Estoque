@@ -28,10 +28,9 @@ public class UsuarioDTO implements Serializable {
 	@Column(unique=true)
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Email(message="Email inválido")
-	private String email;
-	
+	private String email;	
 	private String senha;
-	
+	private Integer situacao;	
 	private Integer codSite;
 	
 	public UsuarioDTO() {
@@ -45,8 +44,7 @@ public class UsuarioDTO implements Serializable {
 		email = dto.getEmail();
 		senha = dto.getSenha();
 		
-	}
-	
+	}	
 
 	public Integer getCodigo() {
 		return codigo;
@@ -94,6 +92,14 @@ public class UsuarioDTO implements Serializable {
 
 	public void setCodSite(Integer codSite) {
 		this.codSite = codSite;
+	}
+
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 }

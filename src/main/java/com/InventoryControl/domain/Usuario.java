@@ -18,45 +18,48 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.InventoryControl.enums.Perfil;
+import com.InventoryControl.enums.Situacao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
 	private String matricula;
 	private String nome;
 	private String email;
 	@JsonIgnore
 	private String senha;
-	
-	@ManyToMany(mappedBy="usuarios")
-	private List<Sites> site=new ArrayList<>();
-	
+	private Integer situacao;
+
+	@ManyToMany(mappedBy = "usuarios")
+	private List<Sites> site = new ArrayList<>();
+
 	@JsonIgnore
-	@OneToMany(mappedBy="usuario")
-	private List<Trocas> trocas=new ArrayList<>();
-	
-	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="PERFIS")
+	@OneToMany(mappedBy = "usuario")
+	private List<Trocas> trocas = new ArrayList<>();
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
-	
+
 	public Usuario() {
-		
+
 		addPerfil(Perfil.MODERADOR);
-		
+
 	}
 
-	public Usuario(Integer codigo, String matricula, String nome, String email, String senha) {
+	public Usuario(Integer codigo, String matricula, String nome, String email, String senha, Situacao situacao) {
 		super();
 		this.codigo = codigo;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.situacao = (situacao == null) ? null : situacao.getCod();
 		addPerfil(Perfil.MODERADOR);
 	}
 
@@ -115,15 +118,23 @@ public class Usuario implements Serializable{
 	public void setTrocas(List<Trocas> trocas) {
 		this.trocas = trocas;
 	}
-	
+
 	public Set<Perfil> getPerfis() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
-	
+
 	public void addPerfil(Perfil perfil) {
-		
+
 		perfis.add(perfil.getCod());
-}
+	}
+	
+	public Situacao getSituacao() {
+		return Situacao.toEnum(situacao);
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao.getCod();
+	}
 
 	@Override
 	public int hashCode() {
@@ -148,6 +159,6 @@ public class Usuario implements Serializable{
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}	
+	}
 
 }
