@@ -218,8 +218,8 @@ public class DBService {
 		repoTrocas.save(Arrays.asList(t1, t2));
 
 		// ***********************************************************************
-		ItemTroca it1 = new ItemTroca(t1, prod1, 2,"INC00003545621");
-		ItemTroca it2 = new ItemTroca(t2, prod11, 5,"INC00003545623");
+		ItemTroca it1 = new ItemTroca(t1, prod1, 2,"INC00003545621","Defeito");
+		ItemTroca it2 = new ItemTroca(t2, prod11, 5,"INC00003545623","Defeito");
 		
 
 		t1.getItens().addAll(Arrays.asList(it1));
