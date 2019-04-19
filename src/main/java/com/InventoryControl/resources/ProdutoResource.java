@@ -34,7 +34,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok().body(objList);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ProdutoDTO objDTO) {
 		Produto obj = service.fromDTO(objDTO);
