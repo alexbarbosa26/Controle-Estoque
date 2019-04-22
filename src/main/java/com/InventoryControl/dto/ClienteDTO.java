@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -15,6 +17,7 @@ public class ClienteDTO implements Serializable {
 	
 	private Integer codigo;
 	
+	@Column(unique=true)
 	@NotEmpty(message="Preenchimento Obrigatório")
 	@Length(min = 3, max = 150, message = "Deve conter entre 3 e 150 caracteres")
 	private String nome;
