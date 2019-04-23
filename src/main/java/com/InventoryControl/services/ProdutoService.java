@@ -71,6 +71,15 @@ public class ProdutoService {
 
 		return repo.dashboardProduto(sites, categoria);
 	}
+	
+	//metodo para buscar os produtos pelo site do usuario
+	public List<Produto> dashboardProdutoSite(List<Integer> codSite) {
+		
+		List<Sites> sites = repoSite.findAll(codSite);
+		
+		return repo.dashboardProdutoSite(sites);
+		
+	}
 
 	// metodo para busca de produtos por um ou mais Sites e Categoria
 	public List<Produto> dashboardProdutoCategoria(List<Integer> codSite, List<Integer> codCategoria) {

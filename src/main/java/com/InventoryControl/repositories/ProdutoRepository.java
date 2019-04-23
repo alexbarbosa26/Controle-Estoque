@@ -44,4 +44,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Transactional(readOnly = true)
 	@Query("SELECT obj FROM Produto obj WHERE obj.quantidade > 0 ORDER BY obj.quantidade DESC")
 	public List<Produto> findAllOrderByQuantidade();
+	
+	@Transactional(readOnly=true)
+	@Query("SELECT obj FROM Produto obj WHERE obj.site IN :site ORDER BY obj.quantidade DESC")
+	public List<Produto> dashboardProdutoSite(@Param("site") List<Sites> site);
 }
