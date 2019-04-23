@@ -26,7 +26,7 @@ public class TrocasResource {
 	@Autowired
 	private TrocasService service;
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<List<Trocas>> findAll(){
 		List<Trocas> objList = service.findAll();
@@ -34,7 +34,7 @@ public class TrocasResource {
 		return ResponseEntity.ok().body(objList);
 	}
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Trocas obj){
 		

@@ -32,7 +32,7 @@ public class CelulaResource {
 		return ResponseEntity.ok().body(objList);
 	}
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CelulaDTO objDTO) {
 		
