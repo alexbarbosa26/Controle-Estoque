@@ -45,7 +45,14 @@ public class ClienteService {
 	public List<Cliente> findAll() {
 		return repoCliente.findAll();
 	}
-
+	
+	public List<Cliente> findAllBySitesAndSituacao(List<Integer> codSites){
+		
+		//List<Sites> sites = serviceSite.findAllSitesClientes(codSites);
+		
+		return repoCliente.findAllBySitesAndSituacao(codSites);
+	}
+	
 	// Metodo para inserir um novo cliente via DTO
 	public Cliente insert(Cliente obj) {
 
