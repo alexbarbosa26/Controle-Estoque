@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -121,6 +122,18 @@ public class ProdutoResource {
 		List<Produto> list = service.dashboardProdutoSite(ids);
 
 		return ResponseEntity.ok().body(list);
+
+	}
+	
+	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody Produto obj, @PathVariable Integer id) {
+
+		obj.setCodigo(id);
+
+		obj = service.update(obj);
+
+		return ResponseEntity.noContent().build();
 
 	}
 }
