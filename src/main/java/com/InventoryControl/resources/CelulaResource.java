@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,22 @@ public class CelulaResource {
 				.toUri();
 
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/cliente/{clienteId}",method = RequestMethod.GET)
+	public ResponseEntity<List<Celula>> findByClientesByCelula(@PathVariable Integer clienteId) {
+		List<Celula> list = service.findByClienteByCelula(clienteId);
+		
+		return ResponseEntity.ok().body(list);
+		
+	}
+	
+	@RequestMapping(value="/{clienteId}",method = RequestMethod.GET)
+	public ResponseEntity<Celula> findByCelula(@PathVariable Integer clienteId) {
+		Celula obj = service.buscarId(clienteId);
+		
+		return ResponseEntity.ok().body(obj);
+		
 	}
 	
 

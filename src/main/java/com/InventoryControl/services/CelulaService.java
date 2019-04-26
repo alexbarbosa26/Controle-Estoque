@@ -45,6 +45,12 @@ public class CelulaService {
 		
 	}
 	
+	public List<Celula> findByClienteByCelula(Integer clienteId) {
+		
+		return repoCelula.findByClienteByCelula(clienteId);
+	}
+	
+	
 	//Metodo para inserir dados
 	public Celula insert(Celula obj) {
 		
