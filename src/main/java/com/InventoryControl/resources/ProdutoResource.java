@@ -59,6 +59,18 @@ public class ProdutoResource {
 		return ResponseEntity.ok().body(list);
 
 	}
+	
+	@RequestMapping(value = "/site", method = RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAllProdutoBySites(
+			@RequestParam(value = "sites", defaultValue = "") String sites) {
+
+		List<Integer> ids = URL.decodeIntList(sites);
+
+		List<Produto> list = service.findAllProdutosBySites(ids);
+
+		return ResponseEntity.ok().body(list);
+
+	}
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ResponseEntity<List<Produto>> dashboardProdutos(
