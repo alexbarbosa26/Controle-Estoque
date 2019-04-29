@@ -7,7 +7,7 @@
 	<groupId>com.InventoryControl</groupId>
 	<artifactId>InventoryControl</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>InventoryControl</name>
 	<description>Control de Estoque</description>
