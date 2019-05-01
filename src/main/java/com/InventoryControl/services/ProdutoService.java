@@ -12,6 +12,7 @@ import com.InventoryControl.domain.Categoria;
 import com.InventoryControl.domain.Produto;
 import com.InventoryControl.domain.Sites;
 import com.InventoryControl.dto.ProdutoDTO;
+import com.InventoryControl.dto.ProdutoUpdateDTO;
 import com.InventoryControl.exceptions.DataIntegrityException;
 import com.InventoryControl.repositories.CategoriaRepository;
 import com.InventoryControl.repositories.ProdutoRepository;
@@ -123,8 +124,10 @@ public class ProdutoService {
 
 	// metodo que atualiza as informações dos produtos
 	public Produto update(Produto obj) {
-		buscarId(obj.getCodigo());
-		return repo.save(obj);
+		Produto newObj = buscarId(obj.getCodigo());
+		updateData(newObj, obj);
+		
+		return repo.save(newObj);
 	}
 
 	// metodo que deteleta os produtos
@@ -137,6 +140,19 @@ public class ProdutoService {
 
 		}
 
+	}
+	
+	public Produto fromUpdateDTO(ProdutoUpdateDTO objDTO) {
+		
+		return new Produto(objDTO.getCodigo(), objDTO.getNome(), objDTO.getQuantidade(), null, null);
+		
+	}
+	
+	private void updateData(Produto newObj, Produto obj) {
+		
+		newObj.setNome(obj.getNome());
+		newObj.setQuantidade(obj.getQuantidade());
+		
 	}
 
 }

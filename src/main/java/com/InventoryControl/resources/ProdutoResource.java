@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.InventoryControl.domain.Produto;
 import com.InventoryControl.dto.ProdutoDTO;
+import com.InventoryControl.dto.ProdutoUpdateDTO;
 import com.InventoryControl.resources.utils.URL;
 import com.InventoryControl.services.ProdutoService;
 
@@ -127,10 +128,10 @@ public class ProdutoResource {
 	
 	@PreAuthorize("hasAnyRole('ADMIN','MODERADOR')")
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody Produto obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody ProdutoUpdateDTO objDTO, @PathVariable Integer id) {
 
+		Produto obj = service.fromUpdateDTO(objDTO);
 		obj.setCodigo(id);
-
 		obj = service.update(obj);
 
 		return ResponseEntity.noContent().build();
