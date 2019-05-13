@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,16 @@ public class TrocasResource {
 	public ResponseEntity<List<Trocas>> findAll(){
 		List<Trocas> objList = service.findAll();
 				
+		return ResponseEntity.ok().body(objList);
+	}
+	
+	@RequestMapping(value="/motivo/{siteId}", method=RequestMethod.GET)
+	public ResponseEntity<List<Trocas>> dashboardTrocas(
+			@PathVariable Integer siteId,
+			@RequestParam(value="cliente", defaultValue="") String clienteId) {
+		
+		List<Trocas> objList = service.dashboardTrocas(clienteId, siteId);
+		
 		return ResponseEntity.ok().body(objList);
 	}
 	

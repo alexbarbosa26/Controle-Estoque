@@ -91,6 +91,10 @@ public class TrocasService {
 		return repo.findAll();
 	}
 	
+	public List<Trocas> dashboardTrocas(String clienteId, Integer siteId) {
+		return repo.dashboardTrocas(clienteId, siteId);
+	}
+	
 	
 	//metodos que lista todos as trocas de forma pagina na qual o usuario deva estar logado para lista-las
 	public Page<Trocas> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
