@@ -35,12 +35,13 @@ public class TrocasResource {
 		return ResponseEntity.ok().body(objList);
 	}
 	
-	@RequestMapping(value="/motivo/{siteId}", method=RequestMethod.GET)
+	@RequestMapping(value="/motivo/{siteId}/{periodo}", method=RequestMethod.GET)
 	public ResponseEntity<List<Trocas>> dashboardTrocas(
 			@PathVariable Integer siteId,
-			@RequestParam(value="cliente", defaultValue="") String clienteId) {
+			@RequestParam(value="cliente", defaultValue="") String clienteId,
+			@PathVariable Integer periodo) {
 		
-		List<Trocas> objList = service.dashboardTrocas(clienteId, siteId);
+		List<Trocas> objList = service.dashboardTrocas(clienteId, siteId, periodo);
 		
 		return ResponseEntity.ok().body(objList);
 	}

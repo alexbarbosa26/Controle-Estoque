@@ -91,8 +91,8 @@ public class TrocasService {
 		return repo.findAll();
 	}
 	
-	public List<Trocas> dashboardTrocas(String clienteId, Integer siteId) {
-		return repo.dashboardTrocas(clienteId, siteId);
+	public List<Trocas> dashboardTrocas(String clienteId, Integer siteId, Integer periodo) {
+		return repo.dashboardTrocas(clienteId, siteId, periodo);
 	}
 	
 	

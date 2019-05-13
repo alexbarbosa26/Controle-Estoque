@@ -26,11 +26,16 @@ public interface TrocasRepository extends JpaRepository<Trocas, Integer>{
 			+ " INNER JOIN obj.celula cel"
 			+ " INNER JOIN item.codigo.produto.site st"
 			+ " WHERE"
+			+ " obj.dataTroca BETWEEN CURRENT_DATE() - :periodo AND CURRENT_DATE()+1"
+			+ " AND"
 			+ " cel.cliente.nome LIKE %:clienteId%"
 			+ " AND"
 			+ " st.codigo=:siteId"
 			+ " GROUP BY item.motivo"
 			+ " ORDER BY item.quantidadeTroca DESC")
-	public List<Trocas> dashboardTrocas(@Param("clienteId") String clienteId, @Param("siteId") Integer siteId);
+	public List<Trocas> dashboardTrocas(
+			@Param("clienteId") String clienteId,
+			@Param("siteId") Integer siteId,
+			@Param("periodo") Integer periodo);
 
 }
